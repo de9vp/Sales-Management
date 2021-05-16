@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="698.0" prefWidth="1019.0" style="-fx-background-color: #2E9AFE;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ProductController">
+   <children>
+      <TableView fx:id="productsTableView" layoutX="282.0" layoutY="80.0" prefHeight="614.0" prefWidth="730.0">
+         <columns>
+            <TableColumn fx:id="idColumn" prefWidth="77.0" text="Id" />
+            <TableColumn fx:id="productColumn" prefWidth="278.0" text="Nameproduct" />
+            <TableColumn fx:id="priceColumn" prefWidth="121.0" text="Price" />
+            <TableColumn fx:id="categoryColumn" prefWidth="253.0" text="Namecategory" />
+         </columns>
+      </TableView>
+      <Pane layoutX="5.0" layoutY="6.0" prefHeight="67.0" prefWidth="1007.0" style="-fx-background-color: #f5f6fa;">
+         <children>
+            <Button layoutX="461.0" layoutY="18.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: #2E9AFE;" text="UPDATE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button layoutX="577.0" layoutY="18.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="96.0" style="-fx-background-color: #2E9AFE;" text="DELETE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+      <Pane layoutX="5.0" layoutY="80.0" prefHeight="613.0" prefWidth="270.0" style="-fx-background-color: #f5f6fa;">
+         <children>
+            <TextField layoutX="10.0" layoutY="82.0" prefHeight="31.0" prefWidth="250.0">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding></TextField>
+            <Label layoutX="10.0" layoutY="60.0" text="ID :" />
+            <Label layoutX="10.0" layoutY="127.0" text="Product Name :" />
+            <TextField layoutX="10.0" layoutY="149.0" prefHeight="31.0" prefWidth="250.0">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </TextField>
+            <Label layoutX="10.0" layoutY="194.0" text="Price (VND) :" />
+            <TextField layoutX="10.0" layoutY="216.0" prefHeight="31.0" prefWidth="250.0">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+            </TextField>
+            <Label layoutX="10.0" layoutY="261.0" text="Category Name :" />
+            <ComboBox layoutX="10.0" layoutY="282.0" prefHeight="31.0" prefWidth="175.0" />
+            <Button layoutX="196.0" layoutY="282.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="64.0" style="-fx-background-color: #2E9AFE;" text="Add" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label layoutX="10.0" layoutY="328.0" text="Table Name :" />
+            <Label layoutX="10.0" layoutY="395.0" text="Table Name :" />
+            <ComboBox layoutX="10.0" layoutY="349.0" prefHeight="31.0" prefWidth="250.0" />
+            <ComboBox layoutX="10.0" layoutY="416.0" prefHeight="31.0" prefWidth="250.0" />
+            <Button layoutX="10.0" layoutY="468.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="250.0" style="-fx-background-color: #2E9AFE;" text="SAVE" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
