@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1221.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.SalesController">
+   <top>
+      <Pane prefHeight="74.0" prefWidth="1221.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="557.0" layoutY="22.0" text="BÁN HÀNG" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </top>
+   <left>
+      <Pane fx:id="listproductPane" prefHeight="616.0" prefWidth="663.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Pane prefHeight="718.0" prefWidth="582.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="2.0" layoutY="39.0" prefHeight="315.0" prefWidth="537.0">
+              <columns>
+                <TableColumn prefWidth="52.0" text="Id" />
+                <TableColumn prefWidth="200.0" text="Nameproduct" />
+                  <TableColumn prefWidth="65.0" text="Count" />
+                  <TableColumn prefWidth="107.0" text="Price" />
+                  <TableColumn prefWidth="112.0" text="Total" />
+              </columns>
+            </TableView>
+            <Label layoutX="28.0" layoutY="14.0" text="Hóa đơn" />
+            <Label layoutX="19.0" layoutY="413.0" text="Thanh toán" />
+            <TextField layoutX="111.0" layoutY="466.0" />
+            <DatePicker layoutX="322.0" layoutY="4.0" />
+            <Label layoutX="258.0" layoutY="413.0" text="Tổng tiền" />
+            <TextField layoutX="352.0" layoutY="408.0" />
+            <Button layoutX="426.0" layoutY="362.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="112.0" text="Delete item" />
+            <Button layoutX="312.0" layoutY="466.0" mnemonicParsing="false" text="Add" />
+            <TextField layoutX="323.0" layoutY="596.0" prefHeight="52.0" prefWidth="215.0" />
+            <Label layoutX="158.0" layoutY="601.0" text="Thanh toán">
+               <font>
+                  <Font size="29.0" />
+               </font>
+            </Label>
+            <TextField layoutX="352.0" layoutY="530.0" />
+            <Label layoutX="246.0" layoutY="535.0" text="Giảm giá còn" />
+            <Label layoutX="19.0" layoutY="535.0" text="Giảm" />
+            <Label layoutX="111.0" layoutY="535.0" text="\%" />
+            <TextField layoutX="64.0" layoutY="530.0" prefHeight="31.0" prefWidth="42.0" />
+         </children>
+      </Pane>
+   </right>
+   <bottom>
+      <Pane prefHeight="64.0" prefWidth="1221.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="986.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="215.0" text="Thanh toán" />
+            <Button layoutX="819.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="145.0" text="Hủy" />
+            <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="134.0" text="Đăng xuất" />
+         </children>
+      </Pane>
+   </bottom>
+</BorderPane>
