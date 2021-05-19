@@ -63,6 +63,4 @@ public class DashboardController implements Initializable {
         window.setTitle(tittle);
         window.showAndWait();
     }
-
-
 }
