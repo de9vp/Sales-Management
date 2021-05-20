@@ -1,69 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.chart.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="1221.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.SalesController">
+
+<BorderPane fx:controller="sample.Controllers.SalesController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Pane prefHeight="74.0" prefWidth="1221.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
-         <children>
-            <Label layoutX="557.0" layoutY="22.0" text="BÁN HÀNG" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
+      <Pane prefHeight="50.0" prefWidth="802.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER" />
    </top>
-   <left>
-      <Pane fx:id="listproductPane" prefHeight="616.0" prefWidth="663.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="718.0" prefWidth="582.0" BorderPane.alignment="CENTER">
-         <children>
-            <TableView layoutX="2.0" layoutY="39.0" prefHeight="315.0" prefWidth="537.0">
-              <columns>
-                <TableColumn prefWidth="52.0" text="Id" />
-                <TableColumn prefWidth="200.0" text="Nameproduct" />
-                  <TableColumn prefWidth="65.0" text="Count" />
-                  <TableColumn prefWidth="107.0" text="Price" />
-                  <TableColumn prefWidth="112.0" text="Total" />
-              </columns>
-            </TableView>
-            <Label layoutX="28.0" layoutY="14.0" text="Hóa đơn" />
-            <Label layoutX="19.0" layoutY="413.0" text="Thanh toán" />
-            <TextField layoutX="111.0" layoutY="466.0" />
-            <DatePicker layoutX="322.0" layoutY="4.0" />
-            <Label layoutX="258.0" layoutY="413.0" text="Tổng tiền" />
-            <TextField layoutX="352.0" layoutY="408.0" />
-            <Button layoutX="426.0" layoutY="362.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="112.0" text="Delete item" />
-            <Button layoutX="312.0" layoutY="466.0" mnemonicParsing="false" text="Add" />
-            <TextField layoutX="323.0" layoutY="596.0" prefHeight="52.0" prefWidth="215.0" />
-            <Label layoutX="158.0" layoutY="601.0" text="Thanh toán">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <TextField layoutX="352.0" layoutY="530.0" />
-            <Label layoutX="246.0" layoutY="535.0" text="Giảm giá còn" />
-            <Label layoutX="19.0" layoutY="535.0" text="Giảm" />
-            <Label layoutX="111.0" layoutY="535.0" text="\%" />
-            <TextField layoutX="64.0" layoutY="530.0" prefHeight="31.0" prefWidth="42.0" />
-         </children>
-      </Pane>
-   </right>
    <bottom>
-      <Pane prefHeight="64.0" prefWidth="1221.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="58.0" prefWidth="200.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="986.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="215.0" text="Thanh toán" />
-            <Button layoutX="819.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="145.0" text="Hủy" />
-            <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="134.0" text="Đăng xuất" />
+            <Button layoutX="10.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="98.0" text="Trang Chủ" />
+            <Button fx:id="memberButton" layoutX="123.0" layoutY="11.0" mnemonicParsing="false" onAction="#MemberButtonOnAction" prefHeight="36.0" prefWidth="124.0" text="Khách Hàng" />
          </children>
       </Pane>
    </bottom>
+   <left>
+      <Pane prefHeight="530.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="10.0" layoutY="46.0" prefHeight="437.0" prefWidth="300.0">
+              <columns>
+                <TableColumn prefWidth="166.4000186920166" text="C1" />
+                <TableColumn prefWidth="133.60000610351562" text="C2" />
+              </columns>
+            </TableView>
+            <ComboBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="169.0" promptText="Chọn thể loại" />
+            <TextField layoutX="132.0" layoutY="494.0" promptText="Tìm kiếm" />
+            <Button layoutX="281.0" layoutY="494.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="290.0" layoutY="511.0" />
+         </children>
+      </Pane>
+   </left>
+   <right>
+      <Pane prefHeight="530.0" prefWidth="780.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView layoutX="10.0" layoutY="46.0" prefHeight="273.0" prefWidth="560.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+            <DatePicker layoutX="10.0" layoutY="11.0" />
+            <TextField editable="false" layoutX="11.0" layoutY="331.0" prefHeight="25.0" prefWidth="190.0" />
+            <TextField editable="false" layoutX="11.0" layoutY="367.0" prefHeight="25.0" prefWidth="190.0" />
+            <TextField editable="false" layoutX="11.0" layoutY="403.0" prefHeight="25.0" prefWidth="190.0" />
+            <Button layoutX="11.0" layoutY="484.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" text="Hủy" />
+            <Button layoutX="102.0" layoutY="484.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="99.0" text="Thêm" />
+            <TextField layoutX="107.0" layoutY="439.0" prefHeight="25.0" prefWidth="94.0" promptText="Nhập số lượng" />
+            <Button layoutX="422.0" layoutY="541.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="147.0" text="THANH TOÁN" />
+            <Button layoutX="312.0" layoutY="541.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="98.0" text="HỦY" />
+            <Button layoutX="472.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Xóa món" />
+            <Pane layoutX="221.0" layoutY="322.0" prefHeight="208.0" prefWidth="359.0" style="-fx-background-color: #2e9afe;">
+               <children>
+                  <TextField layoutX="151.0" layoutY="150.0" prefHeight="50.0" prefWidth="197.0" />
+                  <TextField layoutX="196.0" layoutY="11.0" prefHeight="35.0" prefWidth="153.0" />
+                  <TextField layoutX="160.0" layoutY="65.0" prefHeight="30.0" prefWidth="189.0" />
+                  <TextField layoutX="254.0" layoutY="104.0" prefHeight="30.0" prefWidth="61.0" />
+                  <Label layoutX="321.0" layoutY="108.0" text="\%">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="26.0" layoutY="175.0" text="TỔNG TIỀN :">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="33.0" layoutY="71.0" text="Nhập mã khách hàng" />
+                  <Label layoutX="132.0" layoutY="20.0" text="Tạm tính" />
+               </children>
+            </Pane>
+         </children>
+      </Pane>
+   </right>
 </BorderPane>

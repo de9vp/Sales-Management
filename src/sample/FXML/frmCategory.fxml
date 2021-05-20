@@ -11,9 +11,9 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.CategoryController">
    <top>
-      <Pane prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="216.0" layoutY="16.0" text="Thể Loại" textFill="WHITE">
+            <Label layoutX="66.0" layoutY="11.0" text="Thể Loại" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="19.0" />
                </font>
@@ -26,20 +26,20 @@
          <children>
             <TableView fx:id="categoryTableView" layoutX="4.0" layoutY="4.0" prefHeight="442.0" prefWidth="500.0">
               <columns>
-                <TableColumn fx:id="idColumn" prefWidth="81.60003519058228" text="Id" />
-                <TableColumn fx:id="nameColumn" prefWidth="416.8000259399414" text="Namecategory" />
+                <TableColumn fx:id="idColumn" prefWidth="68.79998636245728" text="Id" />
+                <TableColumn fx:id="nameColumn" prefWidth="431.2000198364258" text="Namecategory" />
               </columns>
             </TableView>
          </children>
       </Pane>
    </center>
    <bottom>
-      <Pane prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="categoryTextField" layoutX="16.0" layoutY="15.0" prefHeight="30.0" prefWidth="167.0" />
-            <Button fx:id="saveButton" layoutX="195.0" layoutY="15.0" mnemonicParsing="false" onAction="#SaveOnAction" prefHeight="30.0" prefWidth="91.0" text="Thêm" />
-            <Button fx:id="deleteButton" disable="true" layoutX="298.0" layoutY="15.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="91.0" text="Xóa" />
-            <Button fx:id="updateButton" disable="true" layoutX="400.0" layoutY="15.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="30.0" prefWidth="91.0" text="Sửa" />
+            <TextField fx:id="categoryTextField" layoutX="16.0" layoutY="10.0" prefHeight="30.0" prefWidth="167.0" />
+            <Button fx:id="saveButton" layoutX="195.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveOnAction" prefHeight="30.0" prefWidth="91.0" text="Thêm" />
+            <Button fx:id="deleteButton" disable="true" layoutX="298.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="91.0" text="Xóa" />
+            <Button fx:id="updateButton" disable="true" layoutX="400.0" layoutY="10.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="30.0" prefWidth="91.0" text="Sửa" />
          </children>
       </Pane>
    </bottom>

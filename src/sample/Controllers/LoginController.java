@@ -105,6 +105,7 @@ public class LoginController implements Initializable {
             if(!rs.next()) {
                 showAlert(Alert.AlertType.ERROR, owner, "Alert!", "Enter your User/Pass");
             } else {
+                showAlert(Alert.AlertType.CONFIRMATION, owner, "Successfully!", "Đăng nhập thành công !!");
                 openDashboard();
             }
         } catch (SQLException e) {

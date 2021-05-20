@@ -11,15 +11,13 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import sample.Database.DBConnection;
 import sample.entity.Products;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class ProductController implements Initializable {
@@ -28,7 +26,9 @@ public class ProductController implements Initializable {
     public TableColumn<Products, Integer> idColumn;
     public TableColumn<Products, String> productColumn;
     public TableColumn<Products, Integer> priceColumn;
+    public TableColumn<Products, Integer> idcategoryColumn;
     public TableColumn<Products, String> categoryColumn;
+
     public Button addcategoryButton;
     public TextField productTextField;
     public TextField priceTextField;
@@ -44,6 +44,7 @@ public class ProductController implements Initializable {
     Parent root;
     Scene fxmlFile;
     Stage window;
+    Window owner;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -53,6 +54,40 @@ public class ProductController implements Initializable {
     }
 
     public void SaveOnAction(ActionEvent actionEvent) {
+        try {
+            String name = productTextField.getText();
+            String price = priceTextField.getText();
+            String namecategory = categoryComboBox.getSelectionModel().getSelectedItem();
+
+            if (name.isEmpty() || price.isEmpty() || namecategory.isEmpty()) {
+                showAlert(Alert.AlertType.ERROR, owner, "Alert!", "Enter your infor");
+            } else {
+
+                PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO tblProduct (name_product, price, id_category) VALUES (?,?,?)");
+                preparedStatement.setString(1, name);
+                preparedStatement.setInt(2, Integer.parseInt(price));
+                //preparedStatement.setInt(3, idcategory);
+
+
+                int resultSet1 = preparedStatement.executeUpdate();
+                showAlert(Alert.AlertType.CONFIRMATION, owner, "Alert!", "Product saved successfully");
+                productTextField.setText("");
+                priceTextField.setText("");
+                categoryComboBox.valueProperty().set(null);
+                showProduct();
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void AddCategoryOnAction(ActionEvent actionEvent) {
+        try {
+            openModalWindow("../FXML/frmCategory.fxml", "The loại !!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void UpdateOnAction(ActionEvent actionEvent) {
@@ -64,7 +99,7 @@ public class ProductController implements Initializable {
     public void SearchOnAction(ActionEvent actionEvent) {
     }
 
-    public void getCategories() {
+    public void getCategories() { //Do data vao combobox the loai
         ObservableList<String> list = FXCollections.observableArrayList();
         Statement statement;
         try {
@@ -79,20 +114,13 @@ public class ProductController implements Initializable {
         categoryComboBox.setItems(list);
     }
 
-    public void AddCategoryOnAction(ActionEvent actionEvent) {
-        try {
-            openModalWindow("../FXML/frmCategory.fxml", "The loại !!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     public void showProduct() {
         ObservableList<Products> list = getProductList();
-        idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("Id"));
-        productColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("Nameproduct"));
-        priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("Price"));
-        categoryColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("Namecategory"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
+        productColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("nameproduct"));
+        priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("price"));
+        idcategoryColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("idcategory"));
+        categoryColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("namecategory"));
         productsTableView.setItems(list);
     }
 
@@ -132,7 +160,7 @@ public class ProductController implements Initializable {
                 }
 
                 products = new Products(rs.getInt("id_product"), rs.getString("name_product"),
-                        rs.getInt("price"), nameCategory);
+                        rs.getInt("price"),rs.getInt("id_category"), nameCategory);
                 productList.add(products);
             }
         } catch (SQLException e) {
@@ -154,7 +182,25 @@ public class ProductController implements Initializable {
         window.showAndWait();
     }
 
+    public void executeQuery(String query) {
+        Statement st;
+        System.out.println(query);
+        try {
+            st = con.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
 }
 
 

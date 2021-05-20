@@ -39,11 +39,7 @@ public class DashboardController implements Initializable {
     }
 
     public void ProductButtonOnAction(ActionEvent actionEvent) {
-        try {
-            openModalWindow("../FXML/frmProduct.fxml", "Quan Ly San Pham!!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        openProduct();
     }
 
     public void AccountButtonOnAction(ActionEvent actionEvent) {
@@ -54,6 +50,7 @@ public class DashboardController implements Initializable {
     }
 
     public void SellButtonOnAction(ActionEvent actionEvent) {
+        openSell();
     }
 
     public void setUserLabel(String username) {
@@ -61,33 +58,39 @@ public class DashboardController implements Initializable {
     }
 
     public void TableOnAction(ActionEvent event) {
+    }
+
+    public void openProduct()  {
         try {
-            openModalWindow("../FXML/frmTables.fxml", "Quan Ly Ban!!");
-        } catch (IOException e) {
+            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmProduct.fxml"));
+            Stage window = (Stage) productButton.getScene().getWindow();
+            window.setScene(new Scene(root));
+        } catch (Exception e) {
             e.printStackTrace();
+            e.getCause();
         }
     }
 
-    public void openModalWindow(String resource, String tittle) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(resource));
-        fxmlFile = new Scene(root);
-        window = new Stage();
-        window.setScene(fxmlFile);
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setAlwaysOnTop(true);
-        window.setIconified(false);
-        //window.initStyle(StageStyle.UNDECORATED);
-        window.setTitle(tittle);
-        window.showAndWait();
-    }
-
-    public void SetMemberOnAction(ActionEvent actionEvent) {
+    public void openAccount()  {
         try {
-            openModalWindow("../FXML/frmMember.fxml", "Quan Ly Khach Hang!!");
-        } catch (IOException e) {
+            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmAccount.fxml"));
+            Stage window = (Stage) accountButton.getScene().getWindow();
+            window.setScene(new Scene(root));
+        } catch (Exception e) {
             e.printStackTrace();
+            e.getCause();
         }
     }
 
+    public void openSell()  {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmSales.fxml"));
+            Stage window = (Stage) accountButton.getScene().getWindow();
+            window.setScene(new Scene(root));
+        } catch (Exception e) {
+            e.printStackTrace();
+            e.getCause();
+        }
+    }
 
 }

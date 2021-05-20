@@ -74,10 +74,11 @@
          <children>
             <TableView fx:id="productsTableView" layoutX="10.0" layoutY="10.0" prefHeight="429.0" prefWidth="700.0">
                <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="45.60003662109375" text="Id" />
-                  <TableColumn fx:id="productColumn" prefWidth="256.79998779296875" text="Nameproduct" />
-                  <TableColumn fx:id="priceColumn" prefWidth="136.79998779296875" text="Price" />
-                  <TableColumn fx:id="categoryColumn" prefWidth="260.00006103515625" text="Namecategory" />
+                  <TableColumn fx:id="idColumn" prefWidth="52.79998779296875" text="id" />
+                  <TableColumn fx:id="productColumn" prefWidth="216.00003051757812" text="nameproduct" />
+                  <TableColumn fx:id="priceColumn" prefWidth="159.99993896484375" text="price" />
+                  <TableColumn fx:id="idcategoryColumn" prefWidth="53.60003662109375" text="idcategory" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="222.39996337890625" text="namecategory" />
                </columns>
             </TableView>
          </children>
