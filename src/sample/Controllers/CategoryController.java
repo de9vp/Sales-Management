@@ -4,23 +4,19 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
 import sample.Database.DBConnection;
-import sample.other.Category;
+import sample.entity.Category;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
 
+    Window owner;
     Connection con = null;
 
     public TableView<Category> categoryTableView;
@@ -97,17 +93,17 @@ public class CategoryController implements Initializable {
         });
     }
 
-    private void insertRecord() {
+    public void insertRecord() {
         String namecategory = categoryTextField.getText();
         if (!namecategory.isEmpty()) {
-            String query = "INSERT INTO tblCategory (name_category) VALUES ('" + namecategory + "')";
-            executeQuery(query);
+
+            executeQuery("INSERT INTO tblCategory (name_category) VALUES ('" + namecategory + "')");
             showCategory();
             categoryTextField.setText("");
         }
     }
 
-    private void executeQuery(String query) {
+    public void executeQuery(String query) {
         Statement st;
         System.out.println(query);
         try {
@@ -116,5 +112,14 @@ public class CategoryController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }

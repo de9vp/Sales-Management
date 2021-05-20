@@ -1,4 +1,4 @@
-package sample.other;
+package sample.entity;
 
 public class Tables {
     private int id;

@@ -1,8 +1,9 @@
-package sample.other;
+package sample.entity;
 
 public class Category {
-    private int id;
-    private String namecategory;
+
+    private final int id;
+    private final String namecategory;
 
     public Category(int id, String namecategory) {
         this.id = id;

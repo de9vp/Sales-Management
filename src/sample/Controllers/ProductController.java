@@ -7,14 +7,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import sample.Database.DBConnection;
-import sample.other.Products;
+import sample.entity.Products;
 
 import java.io.IOException;
 import java.net.URL;
@@ -32,6 +30,14 @@ public class ProductController implements Initializable {
     public TableColumn<Products, Integer> priceColumn;
     public TableColumn<Products, String> categoryColumn;
     public Button addcategoryButton;
+    public TextField productTextField;
+    public TextField priceTextField;
+    public ComboBox<String> categoryComboBox;
+    public Button saveButton;
+    public Button updateButton;
+    public Button deleteButton;
+    public TextField searchTextField;
+    public Button searchButton;
 
     Connection con = null;
 
@@ -42,7 +48,35 @@ public class ProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
+        getCategories();
         showProduct();
+    }
+
+    public void SaveOnAction(ActionEvent actionEvent) {
+    }
+
+    public void UpdateOnAction(ActionEvent actionEvent) {
+    }
+
+    public void DeleteOnAction(ActionEvent actionEvent) {
+    }
+
+    public void SearchOnAction(ActionEvent actionEvent) {
+    }
+
+    public void getCategories() {
+        ObservableList<String> list = FXCollections.observableArrayList();
+        Statement statement;
+        try {
+            ResultSet resultSet = con.createStatement().executeQuery("SELECT name_category FROM tblCategory");
+            while (resultSet.next()) {
+                list.add(resultSet.getString("name_category"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        categoryComboBox.setItems(null);
+        categoryComboBox.setItems(list);
     }
 
     public void AddCategoryOnAction(ActionEvent actionEvent) {
@@ -64,6 +98,7 @@ public class ProductController implements Initializable {
 
     public ObservableList<Products> getProductList() {
         ObservableList<Products> productList = FXCollections.observableArrayList();
+
         String query = " SELECT * FROM tblProduct ";
         Statement st;
         ResultSet rs;
@@ -71,6 +106,7 @@ public class ProductController implements Initializable {
         Statement st1;
         ResultSet rs1;
         String query1 = "SELECT * FROM tblCategory ";
+
         try {
 
             st = con.createStatement();
@@ -117,6 +153,8 @@ public class ProductController implements Initializable {
         window.setTitle(tittle);
         window.showAndWait();
     }
+
+
 }
 
 

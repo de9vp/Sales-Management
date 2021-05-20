@@ -95,12 +95,12 @@ public class LoginController implements Initializable {
         String user = usernameTextField.getText().toString();
         String pass = enterPasswordField.getText().toString();
         //query
-        String Select_Query_Login = "SELECT * FROM tblAccount WHERE username = ? and password = ?";
+        String Select_Query_Login = "SELECT * FROM tblAccount WHERE username = '"+ user +"' and password = '"+ pass +"'";
         try {
 
             pst = con.prepareStatement(Select_Query_Login);
-            pst.setString(1, user);
-            pst.setString(2, pass);
+//            pst.setString(1, user);
+//            pst.setString(2, pass);
             rs = pst.executeQuery();
             if(!rs.next()) {
                 showAlert(Alert.AlertType.ERROR, owner, "Alert!", "Enter your User/Pass");

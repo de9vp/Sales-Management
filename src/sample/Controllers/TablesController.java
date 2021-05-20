@@ -7,15 +7,13 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import sample.Database.DBConnection;
-import sample.other.Tables;
+import sample.entity.Tables;
 
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
-import java.util.Properties;
 import java.util.ResourceBundle;
 
 public class TablesController implements Initializable {

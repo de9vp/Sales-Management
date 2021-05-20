@@ -1,4 +1,4 @@
-package sample.other;
+package sample.entity;
 
 public class Products {
     private final int id;
