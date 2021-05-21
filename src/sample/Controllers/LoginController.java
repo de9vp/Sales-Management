@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,50 +21,35 @@ import sample.Database.DBConnection;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.Scanner;
 
 
 public class LoginController implements Initializable {
-    @FXML
+
     public TextField usernameTextField;
-    @FXML
     public Button loginButton;
-    @FXML
     public Button closeButton;
-    @FXML
     public Button minimizeButton;
-    @FXML
     public PasswordField enterPasswordField;
-    @FXML
     public FontAwesomeIcon coffeeIcon;
-    @FXML
     public Label salesLabel;
-    @FXML
     public FontAwesomeIcon userIcon;
-    @FXML
     public FontAwesomeIcon passIcon;
-    @FXML
     public FontAwesomeIcon lockIcon;
-    @FXML
     public FontAwesomeIcon closeIcon;
-    @FXML
     public FontAwesomeIcon minimizeIcon;
-    @FXML
     public BorderPane frmLogin;
-
-    public LoginController() {
-
-    }
+    public Label signinLabel;
 
     Connection con = null;
-
-
-
+    String userLogged = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        con = DBConnection.DBConn(); //ket noi co so du lieu voi con
+        con = DBConnection.DBConn(); //ket noi database
     }
 
     public void closeButtonOnAction(ActionEvent event) {
@@ -77,7 +63,7 @@ public class LoginController implements Initializable {
         if(!usernameTextField.getText().isBlank() && !enterPasswordField.getText().isBlank()) {
             validateLogin();
         } else {
-            showAlert(Alert.AlertType.ERROR, owner, "Form Error!", "Please enter your Username");
+            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Không được để trống!");
         }
     }
 
@@ -95,18 +81,26 @@ public class LoginController implements Initializable {
         String user = usernameTextField.getText().toString();
         String pass = enterPasswordField.getText().toString();
         //query
-        String Select_Query_Login = "SELECT * FROM tblAccount WHERE username = '"+ user +"' and password = '"+ pass +"'";
+        String Select_Query_Login = "SELECT * FROM tblAccount WHERE username = ? and password = ? ";
         try {
 
             pst = con.prepareStatement(Select_Query_Login);
-//            pst.setString(1, user);
-//            pst.setString(2, pass);
+            pst.setString(1, user);
+            pst.setString(2, pass);
             rs = pst.executeQuery();
             if(!rs.next()) {
-                showAlert(Alert.AlertType.ERROR, owner, "Alert!", "Enter your User/Pass");
+                showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Sai tên đăng nhập/mật khẩu! Mời nhập lại!");
+                usernameTextField.setText("");
+                enterPasswordField.setText("");
             } else {
-                showAlert(Alert.AlertType.CONFIRMATION, owner, "Successfully!", "Đăng nhập thành công !!");
-                openDashboard();
+                userLogged = rs.getString("grant");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Đăng nhập thành công!");
+                alert.setTitle("Thông báo!");
+                Optional<ButtonType> optButton = alert.showAndWait();
+                if (optButton.isPresent() && optButton.get() == ButtonType.OK) {
+                    openDashboard();
+                    System.out.println("Username: " + user + " đã đăng nhập!");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -116,9 +110,22 @@ public class LoginController implements Initializable {
 
     public void openDashboard()  {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmDashboard.fxml"));
+            //hien thi quyen dang nhap
             Stage window = (Stage) loginButton.getScene().getWindow();
-            window.setScene(new Scene(root));
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../FXML/frmDashboard.fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+            DashboardController dashboardController = loader.getController();
+            System.out.println(" " + userLogged + " ");
+            dashboardController.userLabel.setText(userLogged);
+            window.setScene(scene);
+//            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmDashboard.fxml"));
+//            Stage window = (Stage) loginButton.getScene().getWindow();
+//            Scene scene = new Scene(root);
+//            DashboardController dashboardController = FXMLLoader.load(getClass().getResource("../FXML/frmDashboard.fxml"));
+//            dashboardController.userLabel.setText(userLogged);
+//            window.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();
