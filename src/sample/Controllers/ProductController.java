@@ -49,7 +49,7 @@ public class ProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
-        getCategories();
+        getCategoriesForCombobox();
         showProduct();
     }
 
@@ -99,7 +99,7 @@ public class ProductController implements Initializable {
     public void SearchOnAction(ActionEvent actionEvent) {
     }
 
-    public void getCategories() { //Do data vao combobox the loai
+    public void getCategoriesForCombobox() { //Do data vao combobox the loai
         ObservableList<String> list = FXCollections.observableArrayList();
         Statement statement;
         try {
@@ -177,7 +177,6 @@ public class ProductController implements Initializable {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setAlwaysOnTop(true);
         window.setIconified(false);
-        //window.initStyle(StageStyle.UNDECORATED);
         window.setTitle(tittle);
         window.showAndWait();
     }

@@ -46,19 +46,41 @@ public class DashboardController implements Initializable {
     }
 
     public void ProductButtonOnAction(ActionEvent actionEvent) {
-        openProduct();
+        try {
+            openModalWindow("../FXML/frmProduct.fxml", "The loại !!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void AccountButtonOnAction(ActionEvent actionEvent) {
-        openAccount();
+//        String grant = userLabel.getText();
+//        if (grant != "admin") {
+//            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Admin mới được quyền này!");
+//        } else {
+//            openAccount();
+//        }
+        try {
+            openModalWindow("../FXML/frmAccount.fxml", "The loại !!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void InvoiceButtonOnAction(ActionEvent actionEvent) {
-        openInvoice();
+        try {
+            openModalWindow("../FXML/frmInvoice.fxml", "The loại !!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void SellButtonOnAction(ActionEvent actionEvent) {
-        openSell();
+        try {
+            openModalWindow("../FXML/frmSales.fxml", "The loại !!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void closeButtonOnAction(ActionEvent actionEvent) {
@@ -69,49 +91,6 @@ public class DashboardController implements Initializable {
     public void minimizeButtonOnAction(ActionEvent actionEvent) {
         Stage stage = (Stage) minimizeButton.getScene().getWindow();
         stage.setIconified(true);
-    }
-
-    //handle
-
-    public void setUserLabel(String username) {
-        userLabel.setText(username);
-    }
-
-    public void openProduct()  {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmProduct.fxml"));
-            Stage window = (Stage) productButton.getScene().getWindow();
-            window.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void openAccount()  {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmAccount.fxml"));
-            Stage window = (Stage) accountButton.getScene().getWindow();
-            window.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void openSell()  {
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmSales.fxml"));
-            Stage window = (Stage) accountButton.getScene().getWindow();
-            window.setScene(new Scene(root));
-        } catch (Exception e) {
-            e.printStackTrace();
-            e.getCause();
-        }
-    }
-
-    public void openInvoice() {
-
     }
 
     public void LogoutOnAction(ActionEvent actionEvent) throws IOException {
@@ -125,5 +104,28 @@ public class DashboardController implements Initializable {
             stage.setScene(scene);
             stage.show();
         }
+    }
+
+    //handle
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+    public void openModalWindow(String resource, String tittle) throws IOException {
+        root = FXMLLoader.load(getClass().getResource(resource));
+        fxmlFile = new Scene(root);
+        window = new Stage();
+        window.setScene(fxmlFile);
+        window.initModality(Modality.APPLICATION_MODAL);
+        window.setAlwaysOnTop(true);
+        window.setIconified(false);
+        window.setTitle(tittle);
+        window.showAndWait();
     }
 }

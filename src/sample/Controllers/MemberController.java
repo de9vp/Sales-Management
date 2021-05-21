@@ -4,11 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Window;
 import sample.Database.DBConnection;
 import sample.entity.Member;
 
@@ -29,15 +27,19 @@ public class MemberController implements Initializable {
     public Button deleteButton;
     public Button updateButton;
     public TextField codeTextField;
+    public TextField searchTextField;
+    public Button searchButton;
 
     Connection con = null;
+    Window owner;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
+        addListenerForMember();
         showMember();
-        addListenerForTable();
+
     }
 
     public void SaveOnAction(ActionEvent actionEvent) {
@@ -58,8 +60,12 @@ public class MemberController implements Initializable {
         showMember();
     }
 
+    public void SearchOnAction(ActionEvent actionEvent) {
+    }
+
+    //handle
+    ObservableList<Member> list = getMemberList();
     public void showMember() {
-        ObservableList<Member> list = getMemberList();
         idColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("Id"));
         codeColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("Code"));
         memberColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("Name"));
@@ -86,7 +92,7 @@ public class MemberController implements Initializable {
         return memberList;
     }
 
-    public void addListenerForTable() {
+    public void addListenerForMember() {
         memberTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
                 updateButton.setDisable(false);
@@ -106,7 +112,7 @@ public class MemberController implements Initializable {
         String codemember = codeTextField.getText();
         String membername = memberTextField.getText();
         if (!codemember.isEmpty() && !membername.isEmpty()) {
-            String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + Integer.valueOf(codemember) + "', '" + membername + "')";
+            String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + codemember + "', '" + membername + "')";
             executeQuery(query);
             showMember();
             codeTextField.setText("");
@@ -124,4 +130,15 @@ public class MemberController implements Initializable {
             e.printStackTrace();
         }
     }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
+    }
+
+
 }

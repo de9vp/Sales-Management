@@ -20,8 +20,8 @@
                </font>
             </Label>
             <Button fx:id="deleteButton" disable="true" layoutX="416.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" text="Xóa" />
-            <TextField fx:id="memberTextField1" layoutX="213.0" layoutY="10.0" prefHeight="30.0" prefWidth="153.0" />
-            <Button layoutX="366.0" layoutY="10.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="37.0" />
+            <TextField fx:id="searchTextField" layoutX="213.0" layoutY="10.0" prefHeight="30.0" prefWidth="153.0" promptText="Tìm kiếm" />
+            <Button fx:id="searchButton" layoutX="366.0" layoutY="10.0" mnemonicParsing="false" onAction="#SearchOnAction" prefHeight="29.0" prefWidth="37.0" />
             <FontAwesomeIcon iconName="SEARCH" layoutX="378.0" layoutY="29.0" />
          </children>
       </Pane>
@@ -31,9 +31,9 @@
          <children>
             <TableView fx:id="memberTableView" layoutX="4.0" layoutY="4.0" prefHeight="442.0" prefWidth="500.0">
                <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="53.599913120269775" text="Id" />
-                  <TableColumn fx:id="codeColumn" prefWidth="191.20001983642578" text="Code" />
-                  <TableColumn fx:id="memberColumn" prefWidth="258.4000244140625" text="Name" />
+                  <TableColumn fx:id="idColumn" prefWidth="53.599913120269775" text="Id" visible="false" />
+                  <TableColumn fx:id="codeColumn" prefWidth="203.2000184059143" resizable="false" text="Code" />
+                  <TableColumn fx:id="memberColumn" prefWidth="295.1999816894531" resizable="false" text="Name" />
                </columns>
             </TableView>
          </children>

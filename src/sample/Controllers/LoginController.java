@@ -45,7 +45,7 @@ public class LoginController implements Initializable {
     public Label signinLabel;
 
     Connection con = null;
-    String userLogged = null;
+    String grantLogged = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -93,7 +93,7 @@ public class LoginController implements Initializable {
                 usernameTextField.setText("");
                 enterPasswordField.setText("");
             } else {
-                userLogged = rs.getString("grant");
+                grantLogged = rs.getString("grantname");
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Đăng nhập thành công!");
                 alert.setTitle("Thông báo!");
                 Optional<ButtonType> optButton = alert.showAndWait();
@@ -110,22 +110,18 @@ public class LoginController implements Initializable {
 
     public void openDashboard()  {
         try {
-            //hien thi quyen dang nhap
             Stage window = (Stage) loginButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(getClass().getResource("../FXML/frmDashboard.fxml"));
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
+
+            //hien thi quyen dang nhap
             DashboardController dashboardController = loader.getController();
-            System.out.println(" " + userLogged + " ");
-            dashboardController.userLabel.setText(userLogged);
+            System.out.println(" " + grantLogged + " ");
+            dashboardController.userLabel.setText(grantLogged);
+
             window.setScene(scene);
-//            Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmDashboard.fxml"));
-//            Stage window = (Stage) loginButton.getScene().getWindow();
-//            Scene scene = new Scene(root);
-//            DashboardController dashboardController = FXMLLoader.load(getClass().getResource("../FXML/frmDashboard.fxml"));
-//            dashboardController.userLabel.setText(userLogged);
-//            window.setScene(scene);
         } catch (Exception e) {
             e.printStackTrace();
             e.getCause();

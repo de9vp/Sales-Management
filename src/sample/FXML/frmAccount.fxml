@@ -21,6 +21,7 @@
             </Label>
             <Button fx:id="deleteButton" disable="true" layoutX="416.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" text="Xóa" />
             <Button fx:id="updateButton" disable="true" layoutX="325.0" layoutY="10.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="30.0" prefWidth="80.0" text="Sửa" />
+            <Button fx:id="dashboardButton" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" onAction="#DashboardOnAction" prefHeight="30.0" prefWidth="109.0" text="Trang chủ" />
          </children>
       </Pane>
    </top>
@@ -29,9 +30,10 @@
          <children>
             <TableView fx:id="accountTableView" layoutX="4.0" layoutY="4.0" prefHeight="442.0" prefWidth="500.0">
                <columns>
-                  <TableColumn fx:id="usernameColumn" prefWidth="140.7999939918518" text="Username" />
-                  <TableColumn fx:id="passwordColumn" prefWidth="144.79998779296875" text="Password" />
-                  <TableColumn fx:id="grantColumn" prefWidth="219.199951171875" text="Grant" />
+                  <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="31.200010776519775" text="Id" visible="false" />
+                  <TableColumn fx:id="usernameColumn" prefWidth="180.0" resizable="false" text="Username" />
+                  <TableColumn fx:id="passwordColumn" prefWidth="180.0" resizable="false" text="Password" />
+                  <TableColumn fx:id="grantColumn" prefWidth="139.19998168945312" resizable="false" text="Grant" />
                </columns>
             </TableView>
          </children>

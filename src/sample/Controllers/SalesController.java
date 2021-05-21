@@ -52,5 +52,4 @@ public class SalesController implements Initializable {
         window.setTitle(tittle);
         window.showAndWait();
     }
-
 }
