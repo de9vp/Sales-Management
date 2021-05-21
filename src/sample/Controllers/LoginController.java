@@ -1,30 +1,24 @@
 package sample.Controllers;
 
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-
 import javafx.scene.layout.BorderPane;
-
 import javafx.stage.Stage;
-import javafx.event.ActionEvent;
-
 import javafx.stage.Window;
-
 import sample.Database.DBConnection;
 
 import java.net.URL;
-import java.sql.*;
-import java.util.Objects;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 
 public class LoginController implements Initializable {
@@ -74,12 +68,12 @@ public class LoginController implements Initializable {
 
     public void validateLogin() {
 
-        PreparedStatement pst = null;
-        ResultSet rs = null;
+        PreparedStatement pst ;
+        ResultSet rs;
 
         Window owner = loginButton.getScene().getWindow();
-        String user = usernameTextField.getText().toString();
-        String pass = enterPasswordField.getText().toString();
+        String user = usernameTextField.getText();
+        String pass = enterPasswordField.getText();
         //query
         String Select_Query_Login = "SELECT * FROM tblAccount WHERE username = ? and password = ? ";
         try {

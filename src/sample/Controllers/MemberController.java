@@ -31,8 +31,6 @@ public class MemberController implements Initializable {
     public Button searchButton;
 
     Connection con = null;
-    Window owner;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -130,15 +128,4 @@ public class MemberController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.initOwner(owner);
-        alert.show();
-    }
-
-
 }

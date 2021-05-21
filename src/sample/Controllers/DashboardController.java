@@ -3,7 +3,6 @@ package sample.Controllers;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -12,7 +11,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.stage.Window;
 import sample.Database.DBConnection;
 
@@ -47,21 +45,23 @@ public class DashboardController implements Initializable {
 
     public void ProductButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmProduct.fxml", "The loại !!");
+            openModalWindow("../FXML/frmProduct.fxml", "SẢN PHẨM!");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void AccountButtonOnAction(ActionEvent actionEvent) {
+        //Xet chi admin thi duoc edit account
 //        String grant = userLabel.getText();
 //        if (grant != "admin") {
 //            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Admin mới được quyền này!");
 //        } else {
 //            openAccount();
 //        }
+
         try {
-            openModalWindow("../FXML/frmAccount.fxml", "The loại !!");
+            openModalWindow("../FXML/frmAccount.fxml", "TÀI KHOẢN!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -69,7 +69,7 @@ public class DashboardController implements Initializable {
 
     public void InvoiceButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmInvoice.fxml", "The loại !!");
+            openModalWindow("../FXML/frmInvoice.fxml", "GIAO DỊCH!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -77,7 +77,7 @@ public class DashboardController implements Initializable {
 
     public void SellButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmSales.fxml", "The loại !!");
+            openModalWindow("../FXML/frmSales.fxml", "BÁN HÀNG!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,6 +101,7 @@ public class DashboardController implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../FXML/frmLogin.fxml")));
             Stage stage = (Stage) logountButton.getScene().getWindow();
             Scene scene = new Scene(root);
+            stage.setTitle("ĐĂNG NHẬP");
             stage.setScene(scene);
             stage.show();
         }

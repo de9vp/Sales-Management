@@ -6,7 +6,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Window;
 import sample.Database.DBConnection;
 import sample.entity.Category;
 
@@ -16,7 +15,6 @@ import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
 
-    Window owner;
     Connection con = null;
 
     public TableView<Category> categoryTableView;

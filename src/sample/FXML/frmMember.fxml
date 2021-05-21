@@ -29,7 +29,7 @@
    <center>
       <Pane prefHeight="425.0" prefWidth="507.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="memberTableView" layoutX="4.0" layoutY="4.0" prefHeight="442.0" prefWidth="500.0">
+            <TableView fx:id="memberTableView" layoutX="4.0" layoutY="4.0" prefHeight="499.0" prefWidth="500.0">
                <columns>
                   <TableColumn fx:id="idColumn" prefWidth="53.599913120269775" text="Id" visible="false" />
                   <TableColumn fx:id="codeColumn" prefWidth="203.2000184059143" resizable="false" text="Code" />
