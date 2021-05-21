@@ -2,6 +2,8 @@ package sample.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -13,6 +15,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.Database.DBConnection;
+import sample.entity.Member;
 import sample.entity.Products;
 
 import java.io.IOException;
@@ -28,16 +31,15 @@ public class ProductController implements Initializable {
     public TableColumn<Products, Integer> priceColumn;
     public TableColumn<Products, Integer> idcategoryColumn;
     public TableColumn<Products, String> categoryColumn;
+    public ComboBox<String> categoryComboBox;
 
     public Button addcategoryButton;
     public TextField productTextField;
     public TextField priceTextField;
-    public ComboBox<String> categoryComboBox;
     public Button saveButton;
     public Button updateButton;
     public Button deleteButton;
     public TextField searchTextField;
-    public Button searchButton;
 
     Connection con = null;
 
@@ -49,8 +51,25 @@ public class ProductController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
+        addListenerForProduct();
         getCategoriesForCombobox();
         showProduct();
+    }
+
+    public int getIdByNamecategory(String name) {
+        int idCategory = 0;
+        try {
+            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM tblCategory");
+            while (rs.next()) {
+                if (name == rs.getString("name_category")) {
+                    idCategory = rs.getInt("id_category");
+                }
+            }
+            System.out.println("" + idCategory + "");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return idCategory;
     }
 
     public void SaveOnAction(ActionEvent actionEvent) {
@@ -59,23 +78,17 @@ public class ProductController implements Initializable {
             String price = priceTextField.getText();
             String namecategory = categoryComboBox.getSelectionModel().getSelectedItem();
 
+
             if (name.isEmpty() || price.isEmpty() || namecategory.isEmpty()) {
                 showAlert(Alert.AlertType.ERROR, owner, "Alert!", "Enter your infor");
             } else {
+                int id = getIdByNamecategory(namecategory);
 
-                PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO tblProduct (name_product, price, id_category) VALUES (?,?,?)");
-                preparedStatement.setString(1, name);
-                preparedStatement.setInt(2, Integer.parseInt(price));
-                //preparedStatement.setInt(3, idcategory);
-
-
-                int resultSet1 = preparedStatement.executeUpdate();
-                showAlert(Alert.AlertType.CONFIRMATION, owner, "Alert!", "Product saved successfully");
+                executeQuery("INSERT INTO tblProduct (name_product, price, id_category) VALUES ('"+ name +"','"+ Integer.valueOf(price) +"','"+ id +"')");
                 productTextField.setText("");
                 priceTextField.setText("");
                 categoryComboBox.valueProperty().set(null);
                 showProduct();
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -91,12 +104,17 @@ public class ProductController implements Initializable {
     }
 
     public void UpdateOnAction(ActionEvent actionEvent) {
+//        Products products = productsTableView.getSelectionModel().getSelectedItem();
+//        String query = " UPDATE tblMember SET code_member = '" + productTextField.getText() + "', name_member = '" + Integer.valueOf(priceTextField.getText()) + "' WHERE id = '" + products.getId()+ "' ";
+//        executeQuery(query);
+//        showProduct();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
-    }
-
-    public void SearchOnAction(ActionEvent actionEvent) {
+//        Products products = productsTableView.getSelectionModel().getSelectedItem();
+//        String query = " DELETE FROM tblMember WHERE id = '" + products.getId() + "' ";
+//        executeQuery(query);
+//        showProduct();
     }
 
     public void getCategoriesForCombobox() { //Do data vao combobox the loai
@@ -116,12 +134,32 @@ public class ProductController implements Initializable {
 
     public void showProduct() {
         ObservableList<Products> list = getProductList();
+
         idColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
         productColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("nameproduct"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("price"));
         idcategoryColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("idcategory"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("namecategory"));
-        productsTableView.setItems(list);
+
+        FilteredList<Products> filteredList = new FilteredList<>(list, b -> true);
+        searchTextField.textProperty().addListener((observableValue, s, t1) -> {
+            filteredList.setPredicate(products -> {
+                if (t1 == null || t1.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = t1.toLowerCase();
+                if (products.getNameproduct().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(products.getPrice()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<Products> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(productsTableView.comparatorProperty());
+        productsTableView.setItems(sortedList);
     }
 
     public ObservableList<Products> getProductList() {
@@ -167,6 +205,24 @@ public class ProductController implements Initializable {
             e.printStackTrace();
         }
         return productList;
+    }
+
+    public void addListenerForProduct() {
+        productsTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, products, t1) -> {
+            if (t1 != null) {
+                updateButton.setDisable(false);
+                deleteButton.setDisable(false);
+                productTextField.setText(t1.getNameproduct());
+                priceTextField.setText(String.valueOf(t1.getPrice()));
+                categoryComboBox.getSelectionModel().select(t1.getNamecategory());
+            } else {
+                productTextField.setText("");
+                priceTextField.setText("");
+                categoryComboBox.getSelectionModel().select("Chọn Thể Loại");
+                updateButton.setDisable(true);
+                deleteButton.setDisable(true);
+            }
+        });
     }
 
     public void openModalWindow(String resource, String tittle) throws IOException {

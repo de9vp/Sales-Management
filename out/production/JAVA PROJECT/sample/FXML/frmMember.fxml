@@ -20,16 +20,15 @@
                </font>
             </Label>
             <Button fx:id="deleteButton" disable="true" layoutX="416.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" text="Xóa" />
-            <TextField fx:id="searchTextField" layoutX="213.0" layoutY="10.0" prefHeight="30.0" prefWidth="153.0" promptText="Tìm kiếm" />
-            <Button fx:id="searchButton" layoutX="366.0" layoutY="10.0" mnemonicParsing="false" onAction="#SearchOnAction" prefHeight="29.0" prefWidth="37.0" />
-            <FontAwesomeIcon iconName="SEARCH" layoutX="378.0" layoutY="29.0" />
+            <TextField fx:id="searchTextField" layoutX="252.0" layoutY="10.0" prefHeight="30.0" prefWidth="153.0" promptText="Tìm kiếm" />
+            <FontAwesomeIcon fill="#2e9afe" iconName="SEARCH" layoutX="383.0" layoutY="31.0" size="1.2em" />
          </children>
       </Pane>
    </top>
    <center>
       <Pane prefHeight="425.0" prefWidth="507.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="memberTableView" layoutX="4.0" layoutY="4.0" prefHeight="442.0" prefWidth="500.0">
+            <TableView fx:id="memberTableView" layoutX="4.0" layoutY="4.0" prefHeight="499.0" prefWidth="500.0">
                <columns>
                   <TableColumn fx:id="idColumn" prefWidth="53.599913120269775" text="Id" visible="false" />
                   <TableColumn fx:id="codeColumn" prefWidth="203.2000184059143" resizable="false" text="Code" />

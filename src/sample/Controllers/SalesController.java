@@ -35,14 +35,14 @@ public class SalesController implements Initializable {
 
     public void MemberButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmMember.fxml", "The loại !!");
+            openModalWindow("../FXML/frmMember.fxml", "KHÁCH HÀNG!");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void openModalWindow(String resource, String tittle) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(resource));
+        Parent root = FXMLLoader.load(getClass().getResource(resource));
         fxmlFile = new Scene(root);
         window = new Stage();
         window.setScene(fxmlFile);

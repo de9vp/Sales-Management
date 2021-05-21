@@ -12,73 +12,71 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="548.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ProductController">
+<BorderPane prefHeight="548.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.ProductController">
    <bottom>
       <Pane prefHeight="50.0" prefWidth="720.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
          <children>
-            <TextField fx:id="productTextField" layoutX="10.0" layoutY="11.0" prefHeight="28.0" prefWidth="157.0" promptText="Tên món">
+            <TextField fx:id="productTextField" layoutX="10.0" layoutY="11.0" prefHeight="28.0" prefWidth="142.0" promptText="Tên món">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
             </TextField>
-            <TextField fx:id="priceTextField" layoutX="178.0" layoutY="11.0" prefHeight="28.0" prefWidth="115.0" promptText="Giá tiền">
+            <TextField fx:id="priceTextField" layoutX="163.0" layoutY="11.0" prefHeight="28.0" prefWidth="103.0" promptText="Giá tiền">
                <padding>
                   <Insets left="10.0" right="10.0" />
                </padding>
             </TextField>
-            <ComboBox fx:id="categoryComboBox" layoutX="304.0" layoutY="11.0" prefHeight="28.0" prefWidth="150.0" promptText="Chọn thể loại" />
-            <Button fx:id="saveButton" layoutX="619.0" layoutY="11.0" mnemonicParsing="false" onAction="#SaveOnAction" prefHeight="28.0" prefWidth="90.0" text="SAVE" textFill="#2e9afe">
+            <ComboBox fx:id="categoryComboBox" layoutX="278.0" layoutY="10.0" prefHeight="28.0" prefWidth="130.0" promptText="Chọn Thể Loại" />
+            <Button fx:id="saveButton" layoutX="459.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveOnAction" prefHeight="28.0" prefWidth="90.0" text="Lưu Món" textFill="#2e9afe">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="updateButton" layoutX="518.0" layoutY="11.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="28.0" prefWidth="90.0" text="UPDATE" textFill="#2e9afe">
+            <Button fx:id="addcategoryButton" layoutX="409.0" layoutY="10.0" mnemonicParsing="false" onAction="#AddCategoryOnAction" prefHeight="28.0" prefWidth="32.0" textFill="#2e9afe">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="addcategoryButton" layoutX="454.0" layoutY="11.0" mnemonicParsing="false" onAction="#AddCategoryOnAction" prefHeight="28.0" prefWidth="32.0" textFill="#2e9afe">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-            <FontAwesomeIcon iconName="PLUS" layoutX="465.0" layoutY="31.0" size="1.1em" />
+            <FontAwesomeIcon iconName="PLUS" layoutX="420.0" layoutY="29.0" size="1.1em" />
          </children>
       </Pane>
    </bottom>
    <top>
       <Pane prefHeight="50.0" prefWidth="720.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="deleteButton" layoutX="620.0" layoutY="11.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="28.0" prefWidth="90.0" text="DELETE" textFill="#2e9afe">
+            <Button fx:id="deleteButton" layoutX="460.0" layoutY="11.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="28.0" prefWidth="90.0" text="Xóa Món" textFill="#2e9afe">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="39.0" layoutY="17.0" text="Sản Phẩm" textFill="WHITE">
+            <Label layoutX="11.0" layoutY="10.0" prefHeight="41.0" prefWidth="121.0" style="-fx-background-color: #ffffff;" text="SẢN PHẨM" textFill="#2e9afe">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
+               <padding>
+                  <Insets left="18.0" />
+               </padding>
             </Label>
-            <TextField fx:id="searchTextField" layoutX="407.0" layoutY="11.0" prefHeight="28.0" prefWidth="150.0" promptText="Tìm kiếm" />
-            <Button fx:id="searchButton" layoutX="557.0" layoutY="11.0" mnemonicParsing="false" onAction="#SearchOnAction" prefHeight="27.0" prefWidth="35.0" textFill="#2e9afe">
+            <TextField fx:id="searchTextField" layoutX="194.0" layoutY="11.0" prefHeight="29.0" prefWidth="153.0" promptText="Tìm kiếm" />
+            <FontAwesomeIcon fill="#2e9afe" iconName="SEARCH" layoutX="324.0" layoutY="30.0" size="1.2em" />
+            <Button fx:id="updateButton" layoutX="359.0" layoutY="11.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="28.0" prefWidth="90.0" text="Cập Nhật" textFill="#2e9afe">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <FontAwesomeIcon iconName="SEARCH" layoutX="569.0" layoutY="29.0" />
          </children>
       </Pane>
    </top>
    <center>
       <Pane prefHeight="450.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="productsTableView" layoutX="10.0" layoutY="10.0" prefHeight="429.0" prefWidth="700.0">
+            <TableView fx:id="productsTableView" layoutX="10.0" layoutY="10.0" prefHeight="429.0" prefWidth="539.0">
                <columns>
-                  <TableColumn fx:id="idColumn" prefWidth="52.79998779296875" text="id" />
-                  <TableColumn fx:id="productColumn" prefWidth="216.00003051757812" text="nameproduct" />
-                  <TableColumn fx:id="priceColumn" prefWidth="159.99993896484375" text="price" />
-                  <TableColumn fx:id="idcategoryColumn" prefWidth="53.60003662109375" text="idcategory" />
-                  <TableColumn fx:id="categoryColumn" prefWidth="222.39996337890625" text="namecategory" />
+                  <TableColumn fx:id="idColumn" prefWidth="52.79998779296875" text="id" visible="false" />
+                  <TableColumn fx:id="productColumn" prefWidth="206.39996337890625" resizable="false" text="nameproduct" />
+                  <TableColumn fx:id="priceColumn" prefWidth="146.4000244140625" resizable="false" text="price" />
+                  <TableColumn fx:id="idcategoryColumn" prefWidth="44.79998779296875" text="idcategory" visible="false" />
+                  <TableColumn fx:id="categoryColumn" prefWidth="184.5999755859375" resizable="false" text="namecategory" />
                </columns>
             </TableView>
          </children>

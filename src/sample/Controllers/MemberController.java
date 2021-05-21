@@ -2,6 +2,8 @@ package sample.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -30,14 +32,14 @@ public class MemberController implements Initializable {
     public TextField searchTextField;
     public Button searchButton;
 
-    Connection con = null;
+    Connection con;
+    ObservableList<Member> listMemberSearched = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
         addListenerForMember();
-        showMember();
-
+        showMemberSearched();
     }
 
     public void SaveOnAction(ActionEvent actionEvent) {
@@ -48,26 +50,45 @@ public class MemberController implements Initializable {
         Member member = memberTableView.getSelectionModel().getSelectedItem();
         String query = " DELETE FROM tblMember WHERE id = '" + member.getId() + "' ";
         executeQuery(query);
-        showMember();
+        showMemberSearched();
     }
 
     public void UpdateOnAction(ActionEvent actionEvent) {
         Member member = memberTableView.getSelectionModel().getSelectedItem();
         String query = " UPDATE tblMember SET code_member = '" + codeTextField.getText() + "', name_member = '" + memberTextField.getText() + "' WHERE id = '" + member.getId()+ "' ";
         executeQuery(query);
-        showMember();
-    }
-
-    public void SearchOnAction(ActionEvent actionEvent) {
+        showMemberSearched();
     }
 
     //handle
-    ObservableList<Member> list = getMemberList();
-    public void showMember() {
+
+    public void showMemberSearched() {
+
+        ObservableList<Member> listMemberSearched = getMemberList();
+
         idColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("Id"));
         codeColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("Code"));
         memberColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("Name"));
-        memberTableView.setItems(list);
+
+        FilteredList<Member> filteredList = new FilteredList<>(listMemberSearched, b -> true);
+        searchTextField.textProperty().addListener((observableValue, s, t1) -> {
+            filteredList.setPredicate(member -> {
+                if (t1 == null || t1.isEmpty()) {
+                    return true;
+                }
+                String lowerCaseFilter = t1.toLowerCase();
+                if (member.getName().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (member.getCode().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            });
+        });
+        SortedList<Member> sortedList = new SortedList<>(filteredList);
+        sortedList.comparatorProperty().bind(memberTableView.comparatorProperty());
+        memberTableView.setItems(sortedList);
     }
 
     private ObservableList<Member> getMemberList() {
@@ -81,7 +102,7 @@ public class MemberController implements Initializable {
             rs = st.executeQuery(query);
             Member member;
             while(rs.next()) {
-                member = new Member(rs.getInt("id"), rs.getInt("code_member"), rs.getString("name_member"));
+                member = new Member(rs.getInt("id"), rs.getString("code_member"), rs.getString("name_member"));
                 memberList.add(member);
             }
         } catch (SQLException e) {
@@ -91,12 +112,12 @@ public class MemberController implements Initializable {
     }
 
     public void addListenerForMember() {
-        memberTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-            if (newSelection != null) {
+        memberTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, products, t1) -> {
+            if (t1 != null) {
                 updateButton.setDisable(false);
                 deleteButton.setDisable(false);
-                codeTextField.setText(String.valueOf(newSelection.getCode()));
-                memberTextField.setText(newSelection.getName());
+                codeTextField.setText(String.valueOf(t1.getCode()));
+                memberTextField.setText(t1.getName());
             } else {
                 codeTextField.setText("");
                 memberTextField.setText("");
@@ -112,7 +133,7 @@ public class MemberController implements Initializable {
         if (!codemember.isEmpty() && !membername.isEmpty()) {
             String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + codemember + "', '" + membername + "')";
             executeQuery(query);
-            showMember();
+            showMemberSearched();
             codeTextField.setText("");
             memberTextField.setText("");
         }

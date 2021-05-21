@@ -14,8 +14,8 @@
     <right>
         <AnchorPane prefHeight="400.0" prefWidth="122.0" BorderPane.alignment="CENTER">
             <children>
-                <TextField fx:id="usernameTextField" layoutX="93.0" layoutY="146.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 2px 0px;" text="admin1" />
-                <PasswordField fx:id="enterPasswordField" layoutX="93.0" layoutY="204.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 2px 0px;" text="admin1" />
+                <TextField fx:id="usernameTextField" layoutX="93.0" layoutY="146.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 2px 0px;" text="phuc" />
+                <PasswordField fx:id="enterPasswordField" layoutX="93.0" layoutY="204.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 2px 0px;" text="phuc" />
                 <FontAwesomeIcon fx:id="userIcon" fill="#2e9afe" glyphStyleClass="" iconName="USER" layoutX="63.0" layoutY="173.0" size="29" />
                 <FontAwesomeIcon fx:id="passIcon" fill="#2e9afe" iconName="KEY" layoutX="63.0" layoutY="229.0" size="29" />
                 <Button fx:id="loginButton" layoutX="115.0" layoutY="265.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="36.0" prefWidth="104.0" style="-fx-background-color: #2E9AFE;" text="Login" textFill="WHITE">
