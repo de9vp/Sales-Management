@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane fx:controller="sample.Controllers.SalesController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.SalesController">
    <top>
       <Pane prefHeight="50.0" prefWidth="802.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER" />
    </top>
@@ -28,16 +27,18 @@
    <left>
       <Pane prefHeight="530.0" prefWidth="320.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="10.0" layoutY="46.0" prefHeight="437.0" prefWidth="300.0">
+            <TableView fx:id="productTableView" layoutX="10.0" layoutY="46.0" prefHeight="473.0" prefWidth="300.0">
               <columns>
-                <TableColumn prefWidth="166.4000186920166" text="C1" />
-                <TableColumn prefWidth="133.60000610351562" text="C2" />
+                <TableColumn fx:id="idproductColumn" prefWidth="40.00000190734863" text="Id" visible="false" />
+                <TableColumn fx:id="productColumn" prefWidth="175.19997596740723" resizable="false" text="Nameproduct" />
+                  <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="126.4000244140625" resizable="false" text="Price" />
+                  <TableColumn fx:id="idcateggoryColumn" minWidth="0.0" prefWidth="0.0" text="Idcategory" visible="false" />
+                  <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="0.0" text="Namecategory" visible="false" />
               </columns>
             </TableView>
-            <ComboBox layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="169.0" promptText="Chọn thể loại" />
-            <TextField layoutX="132.0" layoutY="494.0" promptText="Tìm kiếm" />
-            <Button layoutX="281.0" layoutY="494.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="29.0" />
-            <FontAwesomeIcon iconName="SEARCH" layoutX="290.0" layoutY="511.0" />
+            <ComboBox fx:id="categoryComboBox" layoutX="169.0" layoutY="10.0" prefHeight="25.0" prefWidth="141.0" promptText="Chọn thể loại" />
+            <TextField fx:id="searchTextField" layoutX="10.0" layoutY="10.0" promptText="Tìm kiếm" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="139.0" layoutY="26.0" />
          </children>
       </Pane>
    </left>
@@ -50,7 +51,7 @@
                 <TableColumn prefWidth="75.0" text="C2" />
               </columns>
             </TableView>
-            <DatePicker layoutX="10.0" layoutY="11.0" />
+            <DatePicker layoutX="10.0" layoutY="10.0" />
             <TextField editable="false" layoutX="11.0" layoutY="331.0" prefHeight="25.0" prefWidth="190.0" />
             <TextField editable="false" layoutX="11.0" layoutY="367.0" prefHeight="25.0" prefWidth="190.0" />
             <TextField editable="false" layoutX="11.0" layoutY="403.0" prefHeight="25.0" prefWidth="190.0" />
