@@ -47,17 +47,19 @@
    <right>
       <Pane prefHeight="530.0" prefWidth="780.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView layoutX="10.0" layoutY="46.0" prefHeight="273.0" prefWidth="560.0">
+            <TableView fx:id="orderTableView" layoutX="10.0" layoutY="46.0" prefHeight="273.0" prefWidth="560.0">
               <columns>
-                <TableColumn prefWidth="75.0" text="C1" />
-                <TableColumn prefWidth="75.0" text="C2" />
+                <TableColumn fx:id="productOrderColumn" prefWidth="197.60000610351562" resizable="false" text=" Productname" />
+                  <TableColumn fx:id="priceOrderColumn" prefWidth="124.79998779296875" resizable="false" text="Price" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="64.79998779296875" resizable="false" text="Quantity" />
+                  <TableColumn fx:id="totalColumn" prefWidth="172.7999267578125" resizable="false" text="Total" />
               </columns>
             </TableView>
             <DatePicker layoutX="10.0" layoutY="10.0" />
-            <TextField fx:id="productTextField" editable="false" layoutX="11.0" layoutY="331.0" prefHeight="25.0" prefWidth="190.0" promptText="Tên Sản Phẩm" />
-            <Button fx:id="cancelButton" disable="true" layoutX="11.0" layoutY="484.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="68.0" text="Hủy" />
-            <TextField fx:id="priceTextField" editable="false" layoutX="11.0" layoutY="367.0" prefHeight="25.0" prefWidth="190.0" promptText="Giá Tiền" />
-            <Button fx:id="addButton" disable="true" layoutX="102.0" layoutY="484.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="99.0" text="Thêm" />
+            <TextField fx:id="productTextField" editable="false" layoutX="11.0" layoutY="331.0" prefHeight="25.0" prefWidth="190.0" promptText="Tên Sản Phẩm" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 0px 4px;" />
+            <Button fx:id="cancelProductButton" disable="true" layoutX="11.0" layoutY="484.0" mnemonicParsing="false" onAction="#CancelProductOnAction" prefHeight="36.0" prefWidth="68.0" text="Hủy" />
+            <TextField fx:id="priceTextField" editable="false" layoutX="11.0" layoutY="367.0" prefHeight="25.0" prefWidth="140.0" promptText="Giá Tiền" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 0px 4px;" />
+            <Button fx:id="addProductButton" disable="true" layoutX="102.0" layoutY="484.0" mnemonicParsing="false" onAction="#AddProductOnAcTion" prefHeight="36.0" prefWidth="99.0" text="Thêm" />
             <Button layoutX="422.0" layoutY="541.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="147.0" text="THANH TOÁN" />
             <Button layoutX="312.0" layoutY="541.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="98.0" text="HỦY" />
             <Button layoutX="472.0" layoutY="10.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="97.0" text="Xóa món" />
@@ -81,12 +83,17 @@
                   <Label layoutX="132.0" layoutY="20.0" text="Tạm tính" />
                </children>
             </Pane>
-            <TextField fx:id="totalpriceTextField" editable="false" layoutX="11.0" layoutY="440.0" prefHeight="25.0" prefWidth="190.0" promptText="Tổng Tiền" />
+            <TextField fx:id="totalpriceTextField" editable="false" layoutX="11.0" layoutY="439.0" prefHeight="25.0" prefWidth="158.0" promptText="Tổng Tiền" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 0px 4px;" />
             <Spinner fx:id="quantitySpinner" disable="true" layoutX="119.0" layoutY="403.0" prefHeight="25.0" prefWidth="81.0" styleClass="split-arrows-horizontal">
                <opaqueInsets>
                   <Insets left="10.0" />
                </opaqueInsets></Spinner>
-            <Label layoutX="12.0" layoutY="407.0" text="Nhập Số Lượng :" />
+            <Label layoutX="11.0" layoutY="403.0" prefHeight="25.0" prefWidth="106.0" style="-fx-border-color: #2e9afe; -fx-border-width: 0px 0px 0px 4px;" text="Nhập Số Lượng :" textFill="#a9a9a9">
+               <padding>
+                  <Insets left="8.0" />
+               </padding></Label>
+            <Label layoutX="176.0" layoutY="371.0" text="VND" />
+            <Label layoutX="176.0" layoutY="444.0" text="VND" />
          </children>
       </Pane>
    </right>

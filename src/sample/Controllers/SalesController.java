@@ -15,6 +15,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.Database.DBConnection;
+import sample.entity.InvoiceDetails;
+import sample.entity.Item;
 import sample.entity.Products;
 
 import java.io.IOException;
@@ -36,12 +38,17 @@ public class SalesController implements Initializable {
     public ComboBox<String> categoryComboBox;
     public TextField searchTextField;
     public TextField productTextField;
-    public Button cancelButton;
+    public Button cancelProductButton;
     public TextField priceTextField;
-    public Button addButton;
+    public Button addProductButton;
     public TextField totalpriceTextField;
     public Button memberButton;
     public Spinner<Integer> quantitySpinner;
+    public TableView<Item> orderTableView;
+    public TableColumn<Item, String> productOrderColumn;
+    public TableColumn<Item, Integer> priceOrderColumn;
+    public TableColumn<Item, Integer> quantityColumn;
+    public TableColumn<Item, Integer> totalColumn;
 
     Connection con;
     Parent root;
@@ -58,13 +65,36 @@ public class SalesController implements Initializable {
         showProduct();
     }
 
-
     public void MemberButtonOnAction(ActionEvent actionEvent) {
         try {
             openModalWindow("../FXML/frmMember.fxml", "KHÁCH HÀNG!");
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void CancelProductOnAction(ActionEvent actionEvent) {
+    }
+
+    public void AddProductOnAcTion(ActionEvent actionEvent) {
+        ObservableList<Item> list = FXCollections.observableArrayList();
+
+        String Productname = productTextField.getText();
+        int Price = Integer.parseInt(priceTextField.getText());
+        int Quantity = quantitySpinner.getValue();
+        int Total = Integer.parseInt(totalpriceTextField.getText());
+
+        orderTableView.setItems(list);
+        resetAdd();
+    }
+
+    public void resetAdd() {
+        productTextField.setText("");
+        priceTextField.setText("");
+        quantitySpinner.setDisable(true);
+        totalpriceTextField.setText("");
+        cancelProductButton.setDisable(true);
+        addProductButton.setDisable(true);
     }
 
     public void getCategoriesForCombobox() { //Do data vao combobox the loai
@@ -175,7 +205,7 @@ public class SalesController implements Initializable {
         return productList;
     }
 
-    public void getSpinner() {
+    public void getDataForSpinner() {
         SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,1);
         quantitySpinner.setValueFactory(valueFactory);
     }
@@ -183,13 +213,13 @@ public class SalesController implements Initializable {
     public void addListenerForProduct() {
         productTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, products, t1) -> {
             if (t1 != null) {
-                cancelButton.setDisable(false);
-                addButton.setDisable(false);
+                cancelProductButton.setDisable(false);
+                addProductButton.setDisable(false);
                 quantitySpinner.setDisable(false);
 
                 productTextField.setText(t1.getNameproduct());
                 priceTextField.setText(String.valueOf(t1.getPrice()));
-                getSpinner();
+                getDataForSpinner();
                 totalpriceTextField.setText(String.valueOf(t1.getPrice()));
 
                 quantitySpinner.valueProperty().addListener((observableValue1, integer, t11) -> {
@@ -202,12 +232,10 @@ public class SalesController implements Initializable {
                 productTextField.setPromptText("Tên Sản Phẩm");
                 priceTextField.setPromptText("Giá Tiền");
                 totalpriceTextField.setPromptText("Tổng tiền");
-                cancelButton.setDisable(true);
-                addButton.setDisable(true);
+                cancelProductButton.setDisable(true);
+                addProductButton.setDisable(true);
                 quantitySpinner.setDisable(true);
             }
-
-
         });
     }
 
