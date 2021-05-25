@@ -1,2 +1,3 @@
 # Sales-Management
-using JavaFx-Intellij-JDBC
+using JavaFx-Intellij-JDBC-SQL
+- not responsive

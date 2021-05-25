@@ -35,10 +35,15 @@ public class SalesController implements Initializable {
     public TableColumn<Products, String> categoryColumn;
     public ComboBox<String> categoryComboBox;
     public TextField searchTextField;
-    Connection con;
-
+    public TextField productTextField;
+    public Button cancelButton;
+    public TextField priceTextField;
+    public Button addButton;
+    public TextField totalpriceTextField;
     public Button memberButton;
+    public Spinner<Integer> quantitySpinner;
 
+    Connection con;
     Parent root;
     Scene fxmlFile;
     Stage window;
@@ -48,6 +53,8 @@ public class SalesController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
         getCategoriesForCombobox();
+        //getSpinner();
+        addListenerForProduct();
         showProduct();
     }
 
@@ -84,7 +91,7 @@ public class SalesController implements Initializable {
         idcateggoryColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("idcategory"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("namecategory"));
 
-        FilteredList<Products> filteredList = new FilteredList<>(list, b -> true);
+        FilteredList<Products> filteredList = new FilteredList<>(list, b -> true); //
 
         // tim kiem theo textfield
         searchTextField.textProperty().addListener((observableValue, s, t1) -> {
@@ -166,6 +173,42 @@ public class SalesController implements Initializable {
             e.printStackTrace();
         }
         return productList;
+    }
+
+    public void getSpinner() {
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(1,100,1);
+        quantitySpinner.setValueFactory(valueFactory);
+    }
+
+    public void addListenerForProduct() {
+        productTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, products, t1) -> {
+            if (t1 != null) {
+                cancelButton.setDisable(false);
+                addButton.setDisable(false);
+                quantitySpinner.setDisable(false);
+
+                productTextField.setText(t1.getNameproduct());
+                priceTextField.setText(String.valueOf(t1.getPrice()));
+                getSpinner();
+                totalpriceTextField.setText(String.valueOf(t1.getPrice()));
+
+                quantitySpinner.valueProperty().addListener((observableValue1, integer, t11) -> {
+                    if (t11 != null) {
+                        int Total = t1.getPrice() * t11.intValue();
+                        totalpriceTextField.setText(String.valueOf(Total));
+                    }
+                });
+            } else {
+                productTextField.setPromptText("Tên Sản Phẩm");
+                priceTextField.setPromptText("Giá Tiền");
+                totalpriceTextField.setPromptText("Tổng tiền");
+                cancelButton.setDisable(true);
+                addButton.setDisable(true);
+                quantitySpinner.setDisable(true);
+            }
+
+
+        });
     }
 
     public void openModalWindow(String resource, String tittle) throws IOException {
