@@ -22,10 +22,7 @@ import sample.entity.Products;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
@@ -59,7 +56,6 @@ public class SalesController implements Initializable {
     public TextField provisionalTextField;
     public TextField codeTextField;
     public TextField paidAmountTextField;
-    public Label warning;
 
     Connection con;
     Parent root;
@@ -77,7 +73,8 @@ public class SalesController implements Initializable {
         addListenerForItem();
         showProduct();
         showOrderProduct();
-        handleProvisional();
+        handlePayment();
+
     }
 
     public void MemberButtonOnAction(ActionEvent actionEvent) {
@@ -100,39 +97,38 @@ public class SalesController implements Initializable {
 
         itemlist.add(new Item(Productname, Price, Quantity, Total));
         productTableView.getSelectionModel().clearSelection();
-        handleProvisional();
+        handlePayment();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
         Item item = orderTableView.getSelectionModel().getSelectedItem();
         orderTableView.getItems().remove(item);
         orderTableView.getSelectionModel().clearSelection();
-        handleProvisional();
+        handlePayment();
     }
 
-    public void CheckCodeOnAction(ActionEvent actionEvent) {
+    public void CheckCodeOnAction(ActionEvent actionEvent) throws SQLException { // kiem tra ma thanh vien neu dung giam 40%
         String code = codeTextField.getText();
-        if (code == null) {
-            warning.setText("Mã đang bỏ trống!");
+        String query = "SELECT * FROM tblMember WHERE code_member = ? ";
+        PreparedStatement preparedStatement = con.prepareStatement(query);
+        preparedStatement.setString(1, code);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (!resultSet.next()) {
+            codeTextField.setText("");
+            discountTextField.setText("0");
         } else {
-            try {
-                ResultSet resultSet = con.createStatement().executeQuery("SELECT * FROM tblMember");
-                Member member;
-                while (resultSet.next()) {
-                    if (resultSet.getString("code_member") == code) {
-                        discountTextField.setText("40");
-                    }
-                }
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            codeTextField.setText("");
+            discountTextField.setText("40");
         }
+        handlePayment();
     }
 
     public void PaymentOnAction(ActionEvent actionEvent) {
     }
 
     public void CancelInvoiceOnAction(ActionEvent actionEvent) {
+        orderTableView.getItems().clear();
+        handlePayment();
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,14 +321,14 @@ public class SalesController implements Initializable {
         });
     }
 
-    public void handleProvisional() {  // ham tinh tong tien tam thoi chua giam gia
+    public void handlePayment() {  // ham tinh tong tien tam thoi chua giam gia
         int provisional = 0;
         //tinh tong tat ca gia tri theo 1 cot trong table  view
         provisional = orderTableView.getItems().stream().map(
                 (item) -> item.getTotal()).reduce(provisional, (accumulator, _item) -> accumulator + _item);
 
         provisionalTextField.setText("" + provisional + "");
+        deductionTextField.setText("" + ( Integer.parseInt(discountTextField.getText()) * Integer.parseInt(provisionalTextField.getText()) ) / 100 + "");
+        paidAmountTextField.setText("" + ( Integer.parseInt(provisionalTextField.getText()) - Integer.parseInt(deductionTextField.getText()) ) + "");
     }
-
-
 }
