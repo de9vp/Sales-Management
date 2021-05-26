@@ -22,6 +22,12 @@ public class Products {
         this.namecategory = namecategory;
     }
 
+    public Products(String nameproduct, int price, String namecategory) {
+        this.nameproduct = nameproduct;
+        this.price = price;
+        this.namecategory = namecategory;
+    }
+
     public int getId() {
         return id;
     }

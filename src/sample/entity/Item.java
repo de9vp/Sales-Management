@@ -1,24 +1,24 @@
 package sample.entity;
 
 public class Item {
-    private String productname;
+    private String nameproduct;
     private int price;
     private int quantity;
     private int total;
 
-    public Item(String productname, int price, int quantity, int total) {
-        this.productname = productname;
+    public Item(String nameproduct, int price, int quantity, int total) {
+        this.nameproduct = nameproduct;
         this.price = price;
         this.quantity = quantity;
         this.total = total;
     }
 
-    public String getProductName() {
-        return productname;
+    public String getNameProduct() {
+        return nameproduct;
     }
 
-    public void setProductName(String productName) {
-        this.productname = productName;
+    public void setNameproduct(String nameProduct) {
+        this.nameproduct = nameProduct;
     }
 
     public int getPrice() {

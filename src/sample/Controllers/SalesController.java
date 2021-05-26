@@ -17,6 +17,7 @@ import javafx.stage.Window;
 import sample.Database.DBConnection;
 import sample.entity.InvoiceDetails;
 import sample.entity.Item;
+import sample.entity.Member;
 import sample.entity.Products;
 
 import java.io.IOException;
@@ -25,15 +26,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class SalesController implements Initializable {
 
     public TableView<Products> productTableView;
-    public TableColumn<Products, Integer> idproductColumn;
     public TableColumn<Products, String> productColumn;
     public TableColumn<Products, Integer> priceColumn;
-    public TableColumn<Products, Integer> idcateggoryColumn;
     public TableColumn<Products, String> categoryColumn;
     public ComboBox<String> categoryComboBox;
     public TextField searchTextField;
@@ -44,17 +44,29 @@ public class SalesController implements Initializable {
     public TextField totalpriceTextField;
     public Button memberButton;
     public Spinner<Integer> quantitySpinner;
+
     public TableView<Item> orderTableView;
     public TableColumn<Item, String> productOrderColumn;
     public TableColumn<Item, Integer> priceOrderColumn;
     public TableColumn<Item, Integer> quantityColumn;
     public TableColumn<Item, Integer> totalColumn;
+    public Button deleteButton;
+    public Button checkButton;
+    public Button paymentButton;
+    public Button cancelinvoiceButton;
+    public TextField deductionTextField;
+    public TextField discountTextField;
+    public TextField provisionalTextField;
+    public TextField codeTextField;
+    public TextField paidAmountTextField;
+    public Label warning;
 
     Connection con;
     Parent root;
     Scene fxmlFile;
     Stage window;
     Window owner;
+    ObservableList<Item> itemlist;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -62,7 +74,10 @@ public class SalesController implements Initializable {
         getCategoriesForCombobox();
         //getSpinner();
         addListenerForProduct();
+        addListenerForItem();
         showProduct();
+        showOrderProduct();
+        handleProvisional();
     }
 
     public void MemberButtonOnAction(ActionEvent actionEvent) {
@@ -74,18 +89,63 @@ public class SalesController implements Initializable {
     }
 
     public void CancelProductOnAction(ActionEvent actionEvent) {
+        productTableView.getSelectionModel().clearSelection();
     }
 
     public void AddProductOnAcTion(ActionEvent actionEvent) {
-        ObservableList<Item> list = FXCollections.observableArrayList();
-
         String Productname = productTextField.getText();
         int Price = Integer.parseInt(priceTextField.getText());
         int Quantity = quantitySpinner.getValue();
         int Total = Integer.parseInt(totalpriceTextField.getText());
 
-        orderTableView.setItems(list);
-        resetAdd();
+        itemlist.add(new Item(Productname, Price, Quantity, Total));
+        productTableView.getSelectionModel().clearSelection();
+        handleProvisional();
+    }
+
+    public void DeleteOnAction(ActionEvent actionEvent) {
+        Item item = orderTableView.getSelectionModel().getSelectedItem();
+        orderTableView.getItems().remove(item);
+        orderTableView.getSelectionModel().clearSelection();
+        handleProvisional();
+    }
+
+    public void CheckCodeOnAction(ActionEvent actionEvent) {
+        String code = codeTextField.getText();
+        if (code == null) {
+            warning.setText("Mã đang bỏ trống!");
+        } else {
+            try {
+                ResultSet resultSet = con.createStatement().executeQuery("SELECT * FROM tblMember");
+                Member member;
+                while (resultSet.next()) {
+                    if (resultSet.getString("code_member") == code) {
+                        discountTextField.setText("40");
+                    }
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void PaymentOnAction(ActionEvent actionEvent) {
+    }
+
+    public void CancelInvoiceOnAction(ActionEvent actionEvent) {
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public void showOrderProduct() {
+        itemlist = FXCollections.observableArrayList();
+
+        productOrderColumn.setCellValueFactory(new PropertyValueFactory<Item, String>("nameProduct")); //nameProduct lay ten bien theo method setNameProduct của class Item
+        priceOrderColumn.setCellValueFactory(new PropertyValueFactory<Item, Integer>("price"));
+        quantityColumn.setCellValueFactory(new PropertyValueFactory<Item, Integer>("quantity"));
+        totalColumn.setCellValueFactory(new PropertyValueFactory<Item, Integer>("total"));
+
+        orderTableView.setItems(itemlist);
     }
 
     public void resetAdd() {
@@ -115,15 +175,13 @@ public class SalesController implements Initializable {
     public void showProduct() {
         ObservableList<Products> list = getProductList();
 
-        idproductColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("id"));
         productColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("nameproduct"));
         priceColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("price"));
-        idcateggoryColumn.setCellValueFactory(new PropertyValueFactory<Products, Integer>("idcategory"));
         categoryColumn.setCellValueFactory(new PropertyValueFactory<Products, String>("namecategory"));
 
         FilteredList<Products> filteredList = new FilteredList<>(list, b -> true); //
 
-        // tim kiem theo textfield
+        // tim kiem theo textfield (theo ten va gia tien)
         searchTextField.textProperty().addListener((observableValue, s, t1) -> {
             filteredList.setPredicate(products -> {
                 if (t1 == null || t1.isEmpty()) {
@@ -140,7 +198,7 @@ public class SalesController implements Initializable {
             });
         });
 
-        //tim kiem theo combobox
+        //tim kiem theo combobox( Theo the loai)
         categoryComboBox.valueProperty().addListener((observableValue, s, t1) -> {
             filteredList.setPredicate(products -> {
                 if (t1 == null || t1.isEmpty()) {
@@ -195,8 +253,8 @@ public class SalesController implements Initializable {
                     e.printStackTrace();
                 }
 
-                products = new Products(rs.getInt("id_product"), rs.getString("name_product"),
-                        rs.getInt("price"),rs.getInt("id_category"), nameCategory);
+                products = new Products(rs.getString("name_product"),
+                        rs.getInt("price"), nameCategory);
                 productList.add(products);
             }
         } catch (SQLException e) {
@@ -229,9 +287,15 @@ public class SalesController implements Initializable {
                     }
                 });
             } else {
+                productTextField.setText("");
                 productTextField.setPromptText("Tên Sản Phẩm");
+
+                priceTextField.setText("");
                 priceTextField.setPromptText("Giá Tiền");
+
+                totalpriceTextField.setText("");
                 totalpriceTextField.setPromptText("Tổng tiền");
+
                 cancelProductButton.setDisable(true);
                 addProductButton.setDisable(true);
                 quantitySpinner.setDisable(true);
@@ -250,4 +314,25 @@ public class SalesController implements Initializable {
         window.setTitle(tittle);
         window.showAndWait();
     }
+
+    public void addListenerForItem() {
+        orderTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, item, t1) -> {
+            if (t1 != null) {
+                deleteButton.setDisable(false);
+            } else {
+                deleteButton.setDisable(true);
+            }
+        });
+    }
+
+    public void handleProvisional() {  // ham tinh tong tien tam thoi chua giam gia
+        int provisional = 0;
+        //tinh tong tat ca gia tri theo 1 cot trong table  view
+        provisional = orderTableView.getItems().stream().map(
+                (item) -> item.getTotal()).reduce(provisional, (accumulator, _item) -> accumulator + _item);
+
+        provisionalTextField.setText("" + provisional + "");
+    }
+
+
 }
