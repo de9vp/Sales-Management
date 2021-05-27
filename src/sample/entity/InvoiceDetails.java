@@ -4,14 +4,16 @@ public class InvoiceDetails {
     private int id;
     private String idInvoice;
     private int idProduct;
+    private String nameProduct;
     private int price;
     private int quantity;
     private int totalprice;
 
-    public InvoiceDetails(int id, String idInvoice, int idProduct, int price, int quantity, int totalprice) {
+    public InvoiceDetails(int id, String idInvoice, int idProduct, String nameProduct, int price, int quantity, int totalprice) {
         this.id = id;
         this.idInvoice = idInvoice;
         this.idProduct = idProduct;
+        this.nameProduct = nameProduct;
         this.price = price;
         this.quantity = quantity;
         this.totalprice = totalprice;
@@ -47,6 +49,14 @@ public class InvoiceDetails {
 
     public void setIdProduct(int idProduct) {
         this.idProduct = idProduct;
+    }
+
+    public String getNameProduct() {
+        return nameProduct;
+    }
+
+    public void setNameProduct(String nameProduct) {
+        this.nameProduct = nameProduct;
     }
 
     public int getPrice() {

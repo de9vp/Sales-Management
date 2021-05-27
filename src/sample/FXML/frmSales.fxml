@@ -15,16 +15,31 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.SalesController">
    <top>
-      <Pane prefHeight="50.0" prefWidth="802.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="50.0" prefWidth="802.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="purchasedButton" layoutX="727.0" layoutY="8.0" mnemonicParsing="false" onAction="#PurchasedButtonOnAction" prefHeight="33.0" prefWidth="163.0" text="Sản Phẩm Đã Bán">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <Label layoutX="9.0" layoutY="9.0" prefHeight="32.0" prefWidth="707.0" style="-fx-background-color: #ffffff;" text="GIAO DỊCH BÁN HÀNG " textFill="#2e9afe">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+               <padding>
+                  <Insets left="13.0" />
+               </padding>
+            </Label>
+         </children></Pane>
    </top>
    <bottom>
       <Pane prefHeight="58.0" prefWidth="200.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="14.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #ffffff;" text="Trang Chủ" textFill="#2e9afe">
+            <Button layoutX="11.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #797979;" text="Trang Chủ" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
-            <Button fx:id="memberButton" layoutX="145.0" layoutY="11.0" mnemonicParsing="false" onAction="#MemberButtonOnAction" prefHeight="36.0" prefWidth="163.0" style="-fx-background-color: #ffffff;" text="Khách Hàng" textFill="#2e9afe">
+            <Button fx:id="memberButton" layoutX="139.0" layoutY="11.0" mnemonicParsing="false" onAction="#MemberButtonOnAction" prefHeight="36.0" prefWidth="171.0" text="Khách Hàng">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -208,6 +223,14 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
+            <Label layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="450.0" style="-fx-background-color: #e1e1e1; -fx-border-color: #a6a6a6;" text="THANH TOÁN HÓA ĐƠN">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
          </children>
       </Pane>
    </right>

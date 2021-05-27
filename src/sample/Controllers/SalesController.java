@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.time.LocalDateTime;
-import java.util.Iterator;
 import java.util.ResourceBundle;
 
 public class SalesController implements Initializable {
@@ -54,6 +53,7 @@ public class SalesController implements Initializable {
     public TextField provisionalTextField;
     public TextField codeTextField;
     public TextField paidAmountTextField;
+    public Button purchasedButton;
 
     Connection con;
     Parent root;
@@ -72,12 +72,20 @@ public class SalesController implements Initializable {
         showProduct();
         showOrderProduct();
         handlePayment();
-
     }
 
     public void MemberButtonOnAction(ActionEvent actionEvent) {
         try {
             openModalWindow("../FXML/frmMember.fxml", "KHÁCH HÀNG!");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void PurchasedButtonOnAction(ActionEvent actionEvent) {
+        System.out.println("0202");
+        try {
+            openModalWindow("../FXML/frmPurchased.fxml", "SẢN PHẨM ĐÃ MUA!");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -160,8 +168,6 @@ public class SalesController implements Initializable {
             //showAlert(Alert.AlertType.CONFIRMATION, owner, "Thông báo!", "Thanh toán thành công!");
             System.out.println("Thanh toán thành công!");
         }
-
-
     }
 
     public void CancelInvoiceOnAction(ActionEvent actionEvent) {
@@ -397,4 +403,5 @@ public class SalesController implements Initializable {
         alert.initOwner(owner);
         alert.show();
     }
+
 }
