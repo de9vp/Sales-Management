@@ -27,7 +27,7 @@ public class DashboardController implements Initializable {
 
     Connection con = null;
 
-    public Label userLabel;
+    public Label userLabel; //quyen dang nhap
     public Button productButton;
     public Button accountButton;
     public Button invoiceButton;
@@ -51,20 +51,16 @@ public class DashboardController implements Initializable {
         }
     }
 
-    public void AccountButtonOnAction(ActionEvent actionEvent) {
+    public void AccountButtonOnAction(ActionEvent actionEvent) throws IOException {
         //Xet chi admin thi duoc edit account
 //        String grant = userLabel.getText();
-//        if (grant != "admin") {
-//            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Admin mới được quyền này!");
-//        } else {
-//            openAccount();
-//        }
-
-        try {
+//        System.out.println(""+ grant +"");
+//
+//        if ( grant == "ADMIN" ) {
             openModalWindow("../FXML/frmAccount.fxml", "TÀI KHOẢN!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        } else if (grant == "EMPLOYEE"){
+//            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Admin mới được quyền này!");
+//        }
     }
 
     public void InvoiceButtonOnAction(ActionEvent actionEvent) {

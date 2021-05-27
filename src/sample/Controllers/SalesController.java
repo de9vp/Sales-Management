@@ -15,14 +15,12 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.Database.DBConnection;
-import sample.entity.InvoiceDetails;
-import sample.entity.Item;
-import sample.entity.Member;
-import sample.entity.Products;
+import sample.entity.*;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.ResourceBundle;
 
@@ -117,21 +115,78 @@ public class SalesController implements Initializable {
             codeTextField.setText("");
             discountTextField.setText("0");
         } else {
-            codeTextField.setText("");
+            codeTextField.setText(""+ code +"");
             discountTextField.setText("40");
+            codeTextField.setDisable(true);
         }
         handlePayment();
     }
 
-    public void PaymentOnAction(ActionEvent actionEvent) {
+    public void PaymentOnAction(ActionEvent actionEvent) throws SQLException {
+        if (itemlist.isEmpty()) { // kiem tra neu hoa don co san pham moi cho thanh toan (xe item trong listitem)
+            //showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Hóa đơn đang trống. Mời thêm món!");
+            System.out.println("Hóa đơn đang trống. Mời thêm món!!");
+        } else {
+            String idinvoice = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime()); //dat id hoa don theo thoi gian ()
+            LocalDateTime date = LocalDateTime.now();
+
+            String codeM = codeTextField.getText();
+            String Date = date.toString();
+            int discount = Integer.parseInt(discountTextField.getText());
+            int total = Integer.parseInt(paidAmountTextField.getText());
+
+
+//        System.out.println("" + idinvoice +"");
+//        System.out.println("" + date +"");
+
+            //Tao hoa don add vao tblInvoice
+            executeQuery(" INSERT INTO tblInvoice (id, code_member, datecreated, discount, total) " +
+                    "VALUES ( '"+ idinvoice +"' , '"+ codeM +"' , '"+ Date +"' , '"+ discount +"' , '"+ total +"' ) ");
+
+            //xet tung hang trong (item) trong table view add vao tblInvoiceDetail
+            for (Item i : itemlist) {
+                int id = getIdByNameproduct(i.getNameProduct());
+                executeQuery("INSERT INTO tblInvoiceDetail" +
+                        " ( id_invoice, id_product, quantity, price, totalprice ) " +
+                        "VALUES ( '"+ idinvoice +"', '"+ id +"', '"+ i.getQuantity() +"', '"+ i.getPrice() +"', '"+ i.getTotal() +"' ) ");
+            }
+            orderTableView.getItems().clear();
+            handlePayment();
+
+            codeTextField.setDisable(false);
+            codeTextField.setText("");
+            discountTextField.setText("0");
+
+            //showAlert(Alert.AlertType.CONFIRMATION, owner, "Thông báo!", "Thanh toán thành công!");
+            System.out.println("Thanh toán thành công!");
+        }
+
+
     }
 
     public void CancelInvoiceOnAction(ActionEvent actionEvent) {
-        orderTableView.getItems().clear();
-        handlePayment();
+        if (itemlist.isEmpty()) {
+            //showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Hóa đơn đang trống. Mời thêm món!");
+            System.out.println("Hóa đơn đang trống. Mời thêm món!!");
+        } else {
+            orderTableView.getItems().clear();
+            handlePayment();
+            System.out.println("Hủy hóa đơn thành công!");
+        }
     }
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    public int getIdByNameproduct(String nameproduct) throws SQLException {
+        int id = 0;
+        PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM tblProduct WHERE name_product = ?");
+        preparedStatement.setString(1, nameproduct);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            id = resultSet.getInt("id_product");
+        }
+        return id;
+    }
 
     public void showOrderProduct() {
         itemlist = FXCollections.observableArrayList();
@@ -142,15 +197,6 @@ public class SalesController implements Initializable {
         totalColumn.setCellValueFactory(new PropertyValueFactory<Item, Integer>("total"));
 
         orderTableView.setItems(itemlist);
-    }
-
-    public void resetAdd() {
-        productTextField.setText("");
-        priceTextField.setText("");
-        quantitySpinner.setDisable(true);
-        totalpriceTextField.setText("");
-        cancelProductButton.setDisable(true);
-        addProductButton.setDisable(true);
     }
 
     public void getCategoriesForCombobox() { //Do data vao combobox the loai
@@ -330,5 +376,25 @@ public class SalesController implements Initializable {
         provisionalTextField.setText("" + provisional + "");
         deductionTextField.setText("" + ( Integer.parseInt(discountTextField.getText()) * Integer.parseInt(provisionalTextField.getText()) ) / 100 + "");
         paidAmountTextField.setText("" + ( Integer.parseInt(provisionalTextField.getText()) - Integer.parseInt(deductionTextField.getText()) ) + "");
+    }
+
+    public void executeQuery(String query) {
+        Statement st;
+        System.out.println(query);
+        try {
+            st = con.createStatement();
+            st.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void showAlert(Alert.AlertType alertType, Window owner, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.initOwner(owner);
+        alert.show();
     }
 }

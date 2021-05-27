@@ -112,7 +112,7 @@ public class LoginController implements Initializable {
 
             //hien thi quyen dang nhap
             DashboardController dashboardController = loader.getController();
-            System.out.println(" " + grantLogged + " ");
+            System.out.println("" + grantLogged + "");
             dashboardController.userLabel.setText(grantLogged);
 
             window.setScene(scene);

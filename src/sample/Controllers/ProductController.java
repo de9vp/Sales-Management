@@ -56,18 +56,13 @@ public class ProductController implements Initializable {
         showProduct();
     }
 
-    public int getIdByNamecategory(String name) {
+    public int getIdByNamecategory(String name) throws SQLException { //lay id the loai theo ten
         int idCategory = 0;
-        try {
-            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM tblCategory");
-            while (rs.next()) {
-                if (name == rs.getString("name_category")) {
-                    idCategory = rs.getInt("id_category");
-                }
-            }
-            System.out.println("" + idCategory + "");
-        } catch (SQLException e) {
-            e.printStackTrace();
+        PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM tblCategory WHERE name_category = ?");
+        preparedStatement.setString(1, name);
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            idCategory = resultSet.getInt("id_category");
         }
         return idCategory;
     }
@@ -78,12 +73,10 @@ public class ProductController implements Initializable {
             String price = priceTextField.getText();
             String namecategory = categoryComboBox.getSelectionModel().getSelectedItem();
 
-
             if (name.isEmpty() || price.isEmpty() || namecategory.isEmpty()) {
-                showAlert(Alert.AlertType.ERROR, owner, "Alert!", "Enter your infor");
+                //canh bao
             } else {
                 int id = getIdByNamecategory(namecategory);
-
                 executeQuery("INSERT INTO tblProduct (name_product, price, id_category) VALUES ('"+ name +"','"+ Integer.valueOf(price) +"','"+ id +"')");
                 productTextField.setText("");
                 priceTextField.setText("");
@@ -103,18 +96,20 @@ public class ProductController implements Initializable {
         }
     }
 
-    public void UpdateOnAction(ActionEvent actionEvent) {
-//        Products products = productsTableView.getSelectionModel().getSelectedItem();
-//        String query = " UPDATE tblMember SET code_member = '" + productTextField.getText() + "', name_member = '" + Integer.valueOf(priceTextField.getText()) + "' WHERE id = '" + products.getId()+ "' ";
-//        executeQuery(query);
-//        showProduct();
+    public void UpdateOnAction(ActionEvent actionEvent) throws SQLException {
+        String namecategory = categoryComboBox.getSelectionModel().getSelectedItem();
+        Products products = productsTableView.getSelectionModel().getSelectedItem();
+        String query = " UPDATE tblProduct SET name_product = '"+ productTextField.getText() +"', price = '"+ priceTextField.getText() +"', " +
+                "id_category = '"+ getIdByNamecategory(namecategory) +"' WHERE id_product = '" + products.getId() + "' ";
+        executeQuery(query);
+        showProduct();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
-//        Products products = productsTableView.getSelectionModel().getSelectedItem();
-//        String query = " DELETE FROM tblMember WHERE id = '" + products.getId() + "' ";
-//        executeQuery(query);
-//        showProduct();
+        Products products = productsTableView.getSelectionModel().getSelectedItem();
+        String query = " DELETE FROM tblProduct WHERE id_product = '" + products.getId() + "' ";
+        executeQuery(query);
+        showProduct();
     }
 
     public void getCategoriesForCombobox() { //Do data vao combobox the loai
