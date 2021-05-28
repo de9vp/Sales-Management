@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
@@ -10,23 +11,37 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="590.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.AccountController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="444.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.AccountController">
    <top>
-      <Pane prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="12.0" layoutY="11.0" text="TÀI KHOẢN" textFill="WHITE">
+            <Label layoutX="103.0" layoutY="10.0" prefHeight="30.0" prefWidth="127.0" style="-fx-background-color: #ffffff;" text="TÀI KHOẢN">
                <font>
-                  <Font name="System Bold" size="19.0" />
+                  <Font name="System Bold" size="15.0" />
                </font>
+               <padding>
+                  <Insets left="15.0" />
+               </padding>
             </Label>
-            <Button fx:id="dashboardButton" layoutX="139.0" layoutY="10.0" mnemonicParsing="false" onAction="#DashboardOnAction" prefHeight="30.0" prefWidth="109.0" text="Trang chủ" />
+            <Button fx:id="dashboardButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#DashboardOnAction" prefHeight="30.0" prefWidth="82.0" text="Trang Chủ">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="updateButton" disable="true" layoutX="298.0" layoutY="10.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="30.0" prefWidth="107.0" style="-fx-background-color: #fffb00;" text="Sửa Tài Khoản">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="deleteButton" disable="true" layoutX="416.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000;" text="Xóa">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
          </children>
       </Pane>
    </top>
    <center>
       <Pane prefHeight="425.0" prefWidth="507.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="accountTableView" layoutX="4.0" layoutY="4.0" prefHeight="442.0" prefWidth="500.0">
+            <TableView fx:id="accountTableView" layoutX="11.0" layoutY="8.0" prefHeight="328.0" prefWidth="485.0">
                <columns>
                   <TableColumn fx:id="idColumn" minWidth="0.0" prefWidth="31.200010776519775" text="Id" visible="false" />
                   <TableColumn fx:id="usernameColumn" prefWidth="180.0" resizable="false" text="Username" />
@@ -38,14 +53,15 @@
       </Pane>
    </center>
    <bottom>
-      <Pane prefHeight="89.0" prefWidth="507.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="50.0" prefWidth="507.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="passwordTextField" layoutX="156.0" layoutY="10.0" prefHeight="30.0" prefWidth="141.0" promptText="Mật Khẩu" />
-            <Button fx:id="saveButton" layoutX="417.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveOnAction" prefHeight="30.0" prefWidth="80.0" text="Thêm" />
-            <TextField fx:id="usernameTextField" editable="false" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="135.0" promptText="Tên Đăng Nhập" />
-            <ComboBox fx:id="grantComboBox" layoutX="307.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" promptText="Quyền" />
-            <Button fx:id="updateButton" disable="true" layoutX="174.0" layoutY="50.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="30.0" prefWidth="107.0" text="Đổi mật khẩu" />
-            <Button fx:id="deleteButton" disable="true" layoutX="417.0" layoutY="50.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" text="Xóa" />
+            <Button fx:id="saveButton" layoutX="417.0" layoutY="10.0" mnemonicParsing="false" onAction="#SaveOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #00ff15;" text="Thêm">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <TextField fx:id="usernameTextField" layoutX="10.0" layoutY="10.0" prefHeight="30.0" prefWidth="135.0" promptText="Tên Đăng Nhập" />
+            <ComboBox fx:id="grantComboBox" layoutX="307.0" layoutY="10.0" prefHeight="30.0" prefWidth="100.0" promptText="QUYỀN" />
          </children>
       </Pane>
    </bottom>
