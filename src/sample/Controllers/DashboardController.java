@@ -45,7 +45,7 @@ public class DashboardController implements Initializable {
 
     public void ProductButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmProduct.fxml", "SẢN PHẨM!");
+            openModalWindow("../FXML/frmProduct.fxml", "DEMO 6");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,19 +53,17 @@ public class DashboardController implements Initializable {
 
     public void AccountButtonOnAction(ActionEvent actionEvent) throws IOException {
         //Xet chi admin thi duoc edit account
-//        String grant = userLabel.getText();
-//        System.out.println(""+ grant +"");
-//
-//        if ( grant == "ADMIN" ) {
-            openModalWindow("../FXML/frmAccount.fxml", "TÀI KHOẢN!");
-//        } else if (grant == "EMPLOYEE"){
-//            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Admin mới được quyền này!");
-//        }
+
+        if ( userLabel.getText().equals("ADMIN")) {
+            openModalWindow("../FXML/frmAccount.fxml", "DEMO 3");
+       } else {
+            showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Admin mới được quyền này!");
+        }
     }
 
     public void InvoiceButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmInvoice.fxml", "GIAO DỊCH!");
+            openModalWindow("../FXML/frmInvoice.fxml", "DEMO 4");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -73,7 +71,7 @@ public class DashboardController implements Initializable {
 
     public void SellButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmSales.fxml", "BÁN HÀNG!");
+            openModalWindow("../FXML/frmSales.fxml", "DEMO 5");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -97,7 +95,7 @@ public class DashboardController implements Initializable {
             Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../FXML/frmLogin.fxml")));
             Stage stage = (Stage) logountButton.getScene().getWindow();
             Scene scene = new Scene(root);
-            stage.setTitle("ĐĂNG NHẬP");
+            stage.setTitle("DEMO 1");
             stage.setScene(scene);
             stage.show();
         }

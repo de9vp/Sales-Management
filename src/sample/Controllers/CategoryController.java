@@ -3,18 +3,24 @@ package sample.Controllers;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sample.Database.DBConnection;
 import sample.entity.Category;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 
 public class CategoryController implements Initializable {
 
+    public Button exitButton;
     Connection con = null;
 
     public TableView<Category> categoryTableView;
@@ -52,8 +58,8 @@ public class CategoryController implements Initializable {
 
     public void showCategory() {
         ObservableList<Category> list = getCategoryList();
-        idColumn.setCellValueFactory(new PropertyValueFactory<Category, Integer>("Id"));
-        nameColumn.setCellValueFactory(new PropertyValueFactory<Category, String>("Namecategory"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Category, Integer>("id"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<Category, String>("namecategory"));
         categoryTableView.setItems(list);
     }
 
@@ -109,5 +115,22 @@ public class CategoryController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void ExitOnAction(ActionEvent actionEvent) {
+        try {
+            openProduct();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openProduct() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmProduct.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) exitButton.getScene().getWindow();
+        window.setScene(fxmlFile);
+        window.setTitle("DEMO 6");
+        window.show();
     }
 }

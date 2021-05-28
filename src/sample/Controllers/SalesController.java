@@ -54,11 +54,9 @@ public class SalesController implements Initializable {
     public TextField codeTextField;
     public TextField paidAmountTextField;
     public Button purchasedButton;
+    public Button dashboardButton;
 
     Connection con;
-    Parent root;
-    Scene fxmlFile;
-    Stage window;
     Window owner;
     ObservableList<Item> itemlist;
 
@@ -72,11 +70,12 @@ public class SalesController implements Initializable {
         showProduct();
         showOrderProduct();
         handlePayment();
+
     }
 
     public void MemberButtonOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmMember.fxml", "KHÁCH HÀNG!");
+            openMember();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -85,7 +84,7 @@ public class SalesController implements Initializable {
     public void PurchasedButtonOnAction(ActionEvent actionEvent) {
         System.out.println("0202");
         try {
-            openModalWindow("../FXML/frmPurchased.fxml", "SẢN PHẨM ĐÃ MUA!");
+            openPurchase();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -104,6 +103,7 @@ public class SalesController implements Initializable {
         itemlist.add(new Item(Productname, Price, Quantity, Total));
         productTableView.getSelectionModel().clearSelection();
         handlePayment();
+        handleButtonPayandCancel();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
@@ -111,6 +111,12 @@ public class SalesController implements Initializable {
         orderTableView.getItems().remove(item);
         orderTableView.getSelectionModel().clearSelection();
         handlePayment();
+        handleButtonPayandCancel();
+    }
+
+    public void DashboardOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) dashboardButton.getScene().getWindow();
+        stage.close();
     }
 
     public void CheckCodeOnAction(ActionEvent actionEvent) throws SQLException { // kiem tra ma thanh vien neu dung giam 40%
@@ -135,14 +141,20 @@ public class SalesController implements Initializable {
             //showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Hóa đơn đang trống. Mời thêm món!");
             System.out.println("Hóa đơn đang trống. Mời thêm món!!");
         } else {
-            String idinvoice = String.valueOf(new Timestamp(System.currentTimeMillis()).getTime()); //dat id hoa don theo thoi gian ()
-            LocalDateTime date = LocalDateTime.now();
+            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
-            String codeM = codeTextField.getText();
-            String Date = date.toString();
+            String idinvoice = String.valueOf(timestamp.getTime()); //dat id hoa don theo thoi gian ()
+            String Date = timestamp.toString();
+
+            String codeM; // neu bo trong o nhap ma thanh vien thì se luu gia tri String null
+            if (codeTextField.getText().isEmpty()) {
+                codeM = "null";
+            } else {
+                codeM = codeTextField.getText();
+            }
+
             int discount = Integer.parseInt(discountTextField.getText());
             int total = Integer.parseInt(paidAmountTextField.getText());
-
 
 //        System.out.println("" + idinvoice +"");
 //        System.out.println("" + date +"");
@@ -160,7 +172,7 @@ public class SalesController implements Initializable {
             }
             orderTableView.getItems().clear();
             handlePayment();
-
+            handleButtonPayandCancel();
             codeTextField.setDisable(false);
             codeTextField.setText("");
             discountTextField.setText("0");
@@ -178,6 +190,7 @@ public class SalesController implements Initializable {
             orderTableView.getItems().clear();
             handlePayment();
             System.out.println("Hủy hóa đơn thành công!");
+            handleButtonPayandCancel();
         }
     }
 
@@ -351,16 +364,22 @@ public class SalesController implements Initializable {
         });
     }
 
-    public void openModalWindow(String resource, String tittle) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource(resource));
-        fxmlFile = new Scene(root);
-        window = new Stage();
+    public void openMember() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmMember.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) memberButton.getScene().getWindow();
         window.setScene(fxmlFile);
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setAlwaysOnTop(true);
-        window.setIconified(false);
-        window.setTitle(tittle);
-        window.showAndWait();
+        window.setTitle("DEMO 8");
+        window.show();
+    }
+
+    public void openPurchase() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmPurchased.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) purchasedButton.getScene().getWindow();
+        window.setScene(fxmlFile);
+        window.setTitle("DEMO 9");
+        window.show();
     }
 
     public void addListenerForItem() {
@@ -404,4 +423,13 @@ public class SalesController implements Initializable {
         alert.show();
     }
 
+    public void handleButtonPayandCancel() {
+        if (!orderTableView.getItems().isEmpty()) {
+            paymentButton.setDisable(false);
+            cancelinvoiceButton.setDisable(false);
+        } else {
+            paymentButton.setDisable(true);
+            cancelinvoiceButton.setDisable(true);
+        }
+    }
 }

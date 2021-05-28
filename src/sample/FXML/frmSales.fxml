@@ -15,14 +15,14 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="638.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.SalesController">
    <top>
-      <Pane prefHeight="50.0" prefWidth="802.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="50.0" prefWidth="802.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="purchasedButton" layoutX="727.0" layoutY="8.0" mnemonicParsing="false" onAction="#PurchasedButtonOnAction" prefHeight="33.0" prefWidth="163.0" text="Sản Phẩm Đã Bán">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
-            <Label layoutX="9.0" layoutY="9.0" prefHeight="32.0" prefWidth="707.0" style="-fx-background-color: #ffffff;" text="GIAO DỊCH BÁN HÀNG " textFill="#2e9afe">
+            <Label layoutX="9.0" layoutY="9.0" prefHeight="32.0" prefWidth="707.0" style="-fx-background-color: #ffffff;" text="GIAO DỊCH BÁN HÀNG ---------------------------------------------------------------------------------------------">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -33,9 +33,9 @@
          </children></Pane>
    </top>
    <bottom>
-      <Pane prefHeight="58.0" prefWidth="200.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="58.0" prefWidth="200.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <Button layoutX="11.0" layoutY="11.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #797979;" text="Trang Chủ" textFill="WHITE">
+            <Button fx:id="dashboardButton" layoutX="11.0" layoutY="11.0" mnemonicParsing="false" onAction="#DashboardOnAction" prefHeight="36.0" prefWidth="116.0" text="Trang Chủ">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
@@ -47,18 +47,18 @@
       </Pane>
    </bottom>
    <left>
-      <Pane prefHeight="530.0" prefWidth="320.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="530.0" prefWidth="320.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="productTableView" layoutX="10.0" layoutY="46.0" prefHeight="473.0" prefWidth="300.0">
+            <TableView fx:id="productTableView" layoutX="10.0" layoutY="36.0" prefHeight="494.0" prefWidth="300.0">
               <columns>
                 <TableColumn fx:id="productColumn" minWidth="0.0" prefWidth="171.9999942779541" resizable="false" text="Sản Phẩm" />
                   <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="19.199981689453125" text="Namecategory" visible="false" />
                   <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="127.20001220703125" resizable="false" text="Giá Tiền" />
               </columns>
             </TableView>
-            <ComboBox fx:id="categoryComboBox" layoutX="169.0" layoutY="10.0" prefHeight="25.0" prefWidth="141.0" promptText="Chọn Thể Loại" />
-            <TextField fx:id="searchTextField" layoutX="10.0" layoutY="10.0" promptText="Tìm kiếm" />
-            <FontAwesomeIcon iconName="SEARCH" layoutX="139.0" layoutY="26.0" />
+            <ComboBox fx:id="categoryComboBox" layoutX="169.0" prefHeight="25.0" prefWidth="141.0" promptText="Chọn Thể Loại" />
+            <TextField fx:id="searchTextField" layoutX="10.0" promptText="Tìm kiếm" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="139.0" layoutY="16.0" />
          </children>
       </Pane>
    </left>
@@ -73,33 +73,33 @@
                   <TableColumn fx:id="totalColumn" prefWidth="172.7999267578125" resizable="false" text="Tổng Tiền" />
               </columns>
             </TableView>
-            <TextField fx:id="productTextField" editable="false" layoutX="10.0" layoutY="329.0" mouseTransparent="true" prefHeight="25.0" prefWidth="190.0" promptText="Tên Sản Phẩm" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 0px 4px;">
+            <TextField fx:id="productTextField" editable="false" layoutX="10.0" layoutY="329.0" mouseTransparent="true" prefHeight="25.0" prefWidth="190.0" promptText="Tên Sản Phẩm" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 0px 4px;">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
                <padding>
                   <Insets left="25.0" />
                </padding></TextField>
-            <Button fx:id="cancelProductButton" disable="true" layoutX="10.0" layoutY="482.0" mnemonicParsing="false" onAction="#CancelProductOnAction" prefHeight="36.0" prefWidth="77.0" style="-fx-background-color: #ea1c1c;" text="Hủy Món" textFill="WHITE">
+            <Button fx:id="cancelProductButton" disable="true" layoutX="14.0" layoutY="480.0" mnemonicParsing="false" onAction="#CancelProductOnAction" prefHeight="36.0" prefWidth="77.0" style="-fx-background-color: #ea1c1c;" text="Hủy Món">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <TextField fx:id="priceTextField" editable="false" layoutX="10.0" layoutY="365.0" mouseTransparent="true" prefHeight="25.0" prefWidth="140.0" promptText="Giá Tiền" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 0px 4px;">
+            <TextField fx:id="priceTextField" editable="false" layoutX="10.0" layoutY="365.0" mouseTransparent="true" prefHeight="25.0" prefWidth="140.0" promptText="Giá Tiền" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 0px 4px;">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
                <padding>
                   <Insets left="25.0" />
                </padding></TextField>
-            <Button fx:id="addProductButton" disable="true" layoutX="103.0" layoutY="482.0" mnemonicParsing="false" onAction="#AddProductOnAcTion" prefHeight="36.0" prefWidth="99.0" style="-fx-background-color: #2e9afe;" text="Thêm Món" textFill="WHITE">
+            <Button fx:id="addProductButton" disable="true" layoutX="104.0" layoutY="480.0" mnemonicParsing="false" onAction="#AddProductOnAcTion" prefHeight="36.0" prefWidth="102.0" style="-fx-background-color: #2e9afe;" text="Thêm Món">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="deleteButton" disable="true" layoutX="472.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #ea1c1c;" text="Xóa Món" textFill="WHITE">
+            <Button fx:id="deleteButton" disable="true" layoutX="472.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="25.0" prefWidth="97.0" style="-fx-background-color: #ea1c1c;" text="Xóa Món">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Pane layoutX="221.0" layoutY="328.0" prefHeight="257.0" prefWidth="359.0" style="-fx-background-color: #ffffff; -fx-border-color: #2e9afe; -fx-border-width: 8px 8px  0px 8px;">
+            <Pane layoutX="220.0" layoutY="328.0" prefHeight="259.0" prefWidth="361.0" style="-fx-background-color: #ffffff; -fx-border-color: #000000; -fx-border-width: 8px 8px  0px 8px;">
                <children>
                   <TextField fx:id="paidAmountTextField" editable="false" layoutX="26.0" layoutY="147.0" mouseTransparent="true" prefHeight="40.0" prefWidth="308.0" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 3px 0px;" text="0">
                      <opaqueInsets>
@@ -125,7 +125,7 @@
                         <Font name="System Bold Italic" size="21.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="provisionalTextField" editable="false" layoutX="120.0" layoutY="15.0" mouseTransparent="true" prefHeight="25.0" prefWidth="214.0" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 2px 0px;">
+                  <TextField fx:id="provisionalTextField" editable="false" layoutX="120.0" layoutY="15.0" mouseTransparent="true" prefHeight="25.0" prefWidth="214.0" promptText="Tổng Cộng" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 2px 0px;">
                      <padding>
                         <Insets left="90.0" />
                      </padding>
@@ -180,14 +180,14 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Label>
-                  <Button fx:id="checkButton" layoutX="241.0" layoutY="66.0" mnemonicParsing="false" onAction="#CheckCodeOnAction" prefHeight="35.0" prefWidth="52.0" style="-fx-background-color: #2e9afe;" text="Check" textFill="WHITE">
+                  <Button fx:id="checkButton" layoutX="241.0" layoutY="66.0" mnemonicParsing="false" onAction="#CheckCodeOnAction" prefHeight="35.0" prefWidth="52.0" style="-fx-background-color: #2e9afe;" text="Check">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <TextField fx:id="totalpriceTextField" editable="false" layoutX="10.0" layoutY="437.0" mouseTransparent="true" prefHeight="25.0" prefWidth="158.0" promptText="Tổng Tiền" style="-fx-background-color: transparent; -fx-border-color: #2e9afe; -fx-border-width: 0px 0px 0px 4px;">
+            <TextField fx:id="totalpriceTextField" editable="false" layoutX="10.0" layoutY="437.0" mouseTransparent="true" prefHeight="25.0" prefWidth="158.0" promptText="Tổng Tiền" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 0px 4px;">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
@@ -198,7 +198,7 @@
                <opaqueInsets>
                   <Insets left="10.0" />
                </opaqueInsets></Spinner>
-            <Label layoutX="10.0" layoutY="401.0" prefHeight="25.0" prefWidth="100.0" style="-fx-border-color: #2e9afe; -fx-border-width: 0px 0px 0px 4px;" text="Nhập Số Lượng" textFill="#a9a9a9">
+            <Label layoutX="10.0" layoutY="401.0" prefHeight="25.0" prefWidth="100.0" style="-fx-border-color: #000000; -fx-border-width: 0px 0px 0px 4px;" text="Nhập Số Lượng" textFill="#a9a9a9">
                <padding>
                   <Insets left="8.0" />
                </padding>
@@ -213,12 +213,12 @@
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Label>
-            <Button fx:id="paymentButton" layoutX="380.0" layoutY="532.0" mnemonicParsing="false" onAction="#PaymentOnAction" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: #2e9afe;" text="THANH TOÁN" textFill="WHITE">
+            <Button fx:id="paymentButton" disable="true" layoutX="380.0" layoutY="532.0" mnemonicParsing="false" onAction="#PaymentOnAction" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: #2e9afe;" text="THANH TOÁN">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="cancelinvoiceButton" layoutX="247.0" layoutY="532.0" mnemonicParsing="false" onAction="#CancelInvoiceOnAction" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #ea1c1c;" text="HỦY ĐƠN" textFill="WHITE">
+            <Button fx:id="cancelinvoiceButton" disable="true" layoutX="247.0" layoutY="532.0" mnemonicParsing="false" onAction="#CancelInvoiceOnAction" prefHeight="35.0" prefWidth="114.0" style="-fx-background-color: #ea1c1c;" text="HỦY ĐƠN">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

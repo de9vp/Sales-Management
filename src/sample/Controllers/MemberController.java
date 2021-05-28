@@ -5,13 +5,18 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.Database.DBConnection;
 import sample.entity.Member;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -31,6 +36,7 @@ public class MemberController implements Initializable {
     public TextField codeTextField;
     public TextField searchTextField;
     public Button searchButton;
+    public Button exitButton;
 
     Connection con;
     ObservableList<Member> listMemberSearched = FXCollections.observableArrayList();
@@ -42,7 +48,7 @@ public class MemberController implements Initializable {
         showMemberSearched();
     }
 
-    public void SaveOnAction(ActionEvent actionEvent) {
+    public void SaveOnAction(ActionEvent actionEvent) throws Exception {
         insertRecord();
     }
 
@@ -66,9 +72,9 @@ public class MemberController implements Initializable {
 
         ObservableList<Member> listMemberSearched = getMemberList();
 
-        idColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("Id"));
-        codeColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("Code"));
-        memberColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("Name"));
+        idColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("id"));
+        codeColumn.setCellValueFactory(new PropertyValueFactory<Member, Integer>("code"));
+        memberColumn.setCellValueFactory(new PropertyValueFactory<Member, String>("name"));
 
         FilteredList<Member> filteredList = new FilteredList<>(listMemberSearched, b -> true);
         searchTextField.textProperty().addListener((observableValue, s, t1) -> {
@@ -128,14 +134,18 @@ public class MemberController implements Initializable {
     }
 
     public void insertRecord() {
-        String codemember = codeTextField.getText();
-        String membername = memberTextField.getText();
-        if (!codemember.isEmpty() && !membername.isEmpty()) {
-            String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + codemember + "', '" + membername + "')";
-            executeQuery(query);
-            showMemberSearched();
-            codeTextField.setText("");
-            memberTextField.setText("");
+        try {
+            String codemember = codeTextField.getText();
+            String membername = memberTextField.getText();
+            if (!codemember.isEmpty() && !membername.isEmpty()) {
+                String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + codemember + "', '" + membername + "')";
+                executeQuery(query);
+                showMemberSearched();
+                codeTextField.setText("");
+                memberTextField.setText("");
+            }
+        } catch (Exception e) {
+            System.out.println("Tên đã có. Mời nhập tên khác!");
         }
     }
 
@@ -148,5 +158,22 @@ public class MemberController implements Initializable {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void ExitOnAction(ActionEvent actionEvent) {
+        try {
+            openSales();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openSales() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmSales.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) exitButton.getScene().getWindow();
+        window.setScene(fxmlFile);
+        window.setTitle("DEMO 5");
+        window.show();
     }
 }

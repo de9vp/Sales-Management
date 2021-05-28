@@ -4,15 +4,22 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sample.Database.DBConnection;
 import sample.entity.InvoiceDetails;
 import sample.entity.Member;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -28,6 +35,7 @@ public class PurchasedController implements Initializable {
     public TableColumn<InvoiceDetails, Integer> priceColumn;
     public TableColumn<InvoiceDetails, Integer> quantityColumn;
     public TableColumn<InvoiceDetails, Integer> totalColumn;
+    public Button exitButton;
 
     Connection con;
 
@@ -97,5 +105,22 @@ public class PurchasedController implements Initializable {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public void ExitOnAction(ActionEvent actionEvent) {
+        try {
+            openSales();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openSales() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmSales.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) exitButton.getScene().getWindow();
+        window.setScene(fxmlFile);
+        window.setTitle("DEMO 5");
+        window.show();
     }
 }

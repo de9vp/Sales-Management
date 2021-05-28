@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="lib1">
+    <CLASSES>
+      <root url="file://$USER_HOME$/Downloads/intellij-jasper-report-support-1.0.2/Jasper Report Support/lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$USER_HOME$/Downloads/intellij-jasper-report-support-1.0.2/Jasper Report Support/lib" recursive="false" />
+  </library>
+</component>

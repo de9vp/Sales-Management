@@ -40,12 +40,10 @@ public class ProductController implements Initializable {
     public Button updateButton;
     public Button deleteButton;
     public TextField searchTextField;
+    public Button dashboardButton;
 
     Connection con = null;
 
-    Parent root;
-    Scene fxmlFile;
-    Stage window;
     Window owner;
 
     @Override
@@ -90,7 +88,7 @@ public class ProductController implements Initializable {
 
     public void AddCategoryOnAction(ActionEvent actionEvent) {
         try {
-            openModalWindow("../FXML/frmCategory.fxml", "The loại !!");
+            openCategory();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -220,16 +218,13 @@ public class ProductController implements Initializable {
         });
     }
 
-    public void openModalWindow(String resource, String tittle) throws IOException {
-        root = FXMLLoader.load(getClass().getResource(resource));
-        fxmlFile = new Scene(root);
-        window = new Stage();
+    public void openCategory() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmCategory.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) addcategoryButton.getScene().getWindow();
         window.setScene(fxmlFile);
-        window.initModality(Modality.APPLICATION_MODAL);
-        window.setAlwaysOnTop(true);
-        window.setIconified(false);
-        window.setTitle(tittle);
-        window.showAndWait();
+        window.setTitle("DEMO 7");
+        window.show();
     }
 
     public void executeQuery(String query) {
@@ -250,6 +245,11 @@ public class ProductController implements Initializable {
         alert.setContentText(message);
         alert.initOwner(owner);
         alert.show();
+    }
+
+    public void DashboardOnAction(ActionEvent actionEvent) {
+        Stage stage = (Stage) dashboardButton.getScene().getWindow();
+        stage.close();
     }
 }
 
