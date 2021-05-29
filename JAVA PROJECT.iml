@@ -10,6 +10,5 @@
     <orderEntry type="library" exported="" name="fontawesomefx-8.1" level="project" />
     <orderEntry type="library" name="mssql-jdbc-9.2.1.jre15" level="project" />
     <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="lib1" level="project" />
   </component>
 </module>
