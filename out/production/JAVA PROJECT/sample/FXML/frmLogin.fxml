@@ -6,69 +6,55 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="frmLogin" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.LoginController">
-   <left>
-      <Pane prefHeight="350.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-border-color: #ffffff; -fx-border-width: 10px 0px 10px 10px;" BorderPane.alignment="CENTER">
-         <children>
-            <Label fx:id="salesLabel" layoutX="32.0" layoutY="182.0" text="SALES MANAGEMENT" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Label>
-            <FontAwesomeIcon fx:id="coffeeIcon" fill="WHITE" iconName="COFFEE" layoutX="80.0" layoutY="174.0" size="50" text="" wrappingWidth="55.85714340209961" />
-         </children>
-      </Pane>
-   </left>
-   <right>
-      <Pane prefHeight="350.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-         <children>
-            <TextField fx:id="usernameTextField" layoutX="69.0" layoutY="136.0" prefHeight="25.0" prefWidth="160.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" text="phuc">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </TextField>
-            <PasswordField fx:id="enterPasswordField" layoutX="69.0" layoutY="183.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" text="phuc">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-               <padding>
-                  <Insets left="30.0" />
-               </padding>
-            </PasswordField>
-            <FontAwesomeIcon fx:id="userIcon" glyphStyleClass="" iconName="USER" layoutX="70.0" layoutY="152.0" size="25" />
-            <FontAwesomeIcon fx:id="passIcon" iconName="KEY" layoutX="72.0" layoutY="198.0" size="21" />
-            <Button fx:id="loginButton" layoutX="98.0" layoutY="246.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="36.0" prefWidth="104.0" style="-fx-background-color: #000000;" text="Đăng Nhập" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="14.0" />
-               </font>
-            </Button>
-            <FontAwesomeIcon fx:id="lockIcon" iconName="LOCK" layoutX="134.0" layoutY="96.0" size="50" />
-            <Button fx:id="closeButton" layoutX="265.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #000000;">
-               <graphic>
-                  <FontAwesomeIcon fx:id="closeIcon" fill="WHITE" iconName="CLOSE" size="12" />
-               </graphic>
-            </Button>
-            <Button fx:id="minimizeButton" layoutX="237.0" layoutY="9.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #000000;">
-               <graphic>
-                  <FontAwesomeIcon fx:id="minimizeIcon" fill="WHITE" iconName="MINUS" size="12" />
-               </graphic>
-            </Button>
-            <Label fx:id="signinLabel" alignment="CENTER" layoutX="114.0" layoutY="88.0" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #000000;" text="SIGN IN" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-         </children>
-      </Pane>
-   </right>
+<BorderPane fx:id="frmLogin" prefHeight="352.0" prefWidth="558.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.LoginController">
+    <right>
+        <AnchorPane prefHeight="400.0" prefWidth="122.0" BorderPane.alignment="CENTER">
+            <children>
+                <TextField fx:id="usernameTextField" layoutX="93.0" layoutY="146.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 2px 0px;" text="phuc" />
+                <PasswordField fx:id="enterPasswordField" layoutX="93.0" layoutY="204.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #2E9AFE; -fx-border-width: 0px 0px 2px 0px;" text="phuc" />
+                <FontAwesomeIcon fx:id="userIcon" fill="#2e9afe" glyphStyleClass="" iconName="USER" layoutX="63.0" layoutY="173.0" size="29" />
+                <FontAwesomeIcon fx:id="passIcon" fill="#2e9afe" iconName="KEY" layoutX="63.0" layoutY="229.0" size="29" />
+                <Button fx:id="loginButton" layoutX="115.0" layoutY="265.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="36.0" prefWidth="104.0" style="-fx-background-color: #2E9AFE;" text="Login" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="15.0" />
+                    </font>
+                </Button>
+                <FontAwesomeIcon fx:id="lockIcon" fill="#2e9afe" iconName="LOCK" layoutX="151.0" layoutY="91.0" size="50" />
+                <Button fx:id="closeButton" layoutX="303.0" layoutY="1.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIcon fx:id="closeIcon" fill="#2e9afe" iconName="CLOSE" size="20" />
+                    </graphic>
+                </Button>
+                <Button fx:id="minimizeButton" layoutX="267.0" layoutY="1.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;">
+                    <graphic>
+                        <FontAwesomeIcon fx:id="minimizeIcon" fill="#2e9afe" iconName="MINUS" size="20" />
+                    </graphic>
+                </Button>
+                <Label fx:id="signinLabel" layoutX="129.0" layoutY="90.0" text="SIGN IN" textFill="#2e9afe">
+                    <font>
+                        <Font name="System Bold" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </AnchorPane>
+    </right>
+   <center>
+        <AnchorPane prefHeight="400.0" prefWidth="186.0" style="-fx-background-color: #2E9AFE;" BorderPane.alignment="CENTER">
+            <children>
+                <FontAwesomeIcon fx:id="coffeeIcon" fill="WHITE" iconName="COFFEE" layoutX="94.0" layoutY="183.0" size="60" text="" wrappingWidth="55.85714340209961" />
+                <Label fx:id="salesLabel" layoutX="28.0" layoutY="192.0" text="SALES MANAGEMENT" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+            </children>
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+        </AnchorPane>
+   </center>
 </BorderPane>

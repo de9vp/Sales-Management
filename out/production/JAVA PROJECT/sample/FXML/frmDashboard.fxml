@@ -8,79 +8,74 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="339.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.DashboardController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="254.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.DashboardController">
    <top>
-      <Pane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #2e9afe;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="122.0" layoutY="13.0" text="CHỌN CHỨC NĂNG" textFill="WHITE">
+            <Label layoutX="14.0" layoutY="12.0" text="CHỌN THAO TÁC" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button fx:id="logountButton" layoutX="405.0" layoutY="13.0" mnemonicParsing="false" onAction="#LogoutOnAction" prefHeight="25.0" prefWidth="118.0" text="Đăng xuất">
+            <Button fx:id="logountButton" layoutX="404.0" layoutY="12.0" mnemonicParsing="false" onAction="#LogoutOnAction" prefHeight="25.0" prefWidth="118.0" text="Đăng xuất" textFill="#2e9afe">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="userLabel" layoutX="12.0" layoutY="13.0" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: #ffffff;" text="EMPLOYEE">
+            <Label fx:id="userLabel" layoutX="166.0" layoutY="16.0" prefHeight="19.0" prefWidth="76.0" style="-fx-background-color: #ffffff;" textFill="#2e9afe">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="13.0" />
                </font>
                <padding>
-                  <Insets left="8.0" />
+                  <Insets left="5.0" />
                </padding>
             </Label>
-            <Button fx:id="closeButton" layoutX="563.0" layoutY="13.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="25.0">
+            <Button fx:id="closeButton" layoutX="563.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;">
                <graphic>
-                  <FontAwesomeIcon fx:id="closeIcon" iconName="CLOSE" mouseTransparent="true" size="12" />
+                  <FontAwesomeIcon fx:id="closeIcon" fill="WHITE" iconName="CLOSE" size="20" />
                </graphic>
             </Button>
-            <Button fx:id="minimizeButton" layoutX="535.0" layoutY="13.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="25.0" prefWidth="25.0" textFill="#e13232">
+            <Button fx:id="minimizeButton" layoutX="533.0" layoutY="10.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="31.0" prefWidth="31.0" style="-fx-background-color: transparent;" textFill="#e13232">
                <graphic>
-                  <FontAwesomeIcon fx:id="minimizeIcon" iconName="MINUS" mouseTransparent="true" size="12" />
+                  <FontAwesomeIcon fx:id="minimizeIcon" fill="WHITE" iconName="MINUS" size="20" />
                </graphic>
             </Button>
          </children>
       </Pane>
    </top>
    <bottom>
-      <Pane prefHeight="289.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="355.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="productButton" alignment="TOP_CENTER" layoutX="240.0" layoutY="39.0" mnemonicParsing="false" onAction="#ProductButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Sản Phẩm ]" textFill="WHITE">
+            <Button fx:id="productButton" layoutX="210.0" layoutY="14.0" mnemonicParsing="false" onAction="#ProductButtonOnAction" prefHeight="80.0" prefWidth="180.0" style="-fx-background-color: #2e9afe;" text="[ Sản Phẩm ]" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="accountButton" alignment="TOP_CENTER" layoutX="408.0" layoutY="39.0" mnemonicParsing="false" onAction="#AccountButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Tài Khoản ]" textFill="WHITE">
+            <Button fx:id="accountButton" layoutX="406.0" layoutY="14.0" mnemonicParsing="false" onAction="#AccountButtonOnAction" prefHeight="80.0" prefWidth="180.0" style="-fx-background-color: #2e9afe;" text="[ Tài Khoản ]" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="invoiceButton" alignment="TOP_CENTER" layoutX="73.0" layoutY="164.0" mnemonicParsing="false" onAction="#InvoiceButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Hóa Đơn ]" textFill="WHITE">
+            <Button fx:id="invoiceButton" layoutX="14.0" layoutY="110.0" mnemonicParsing="false" onAction="#InvoiceButtonOnAction" prefHeight="80.0" prefWidth="180.0" style="-fx-background-color: #2e9afe;" text="[ Giao Dịch ]" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button layoutX="408.0" layoutY="164.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ ... ]" textFill="WHITE">
+            <Button layoutX="406.0" layoutY="110.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="180.0" style="-fx-background-color: #2e9afe;" text="[ ... ]" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button alignment="TOP_CENTER" layoutX="240.0" layoutY="164.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Báo Cáo ]" textFill="WHITE">
+            <Button layoutX="210.0" layoutY="110.0" mnemonicParsing="false" prefHeight="80.0" prefWidth="180.0" style="-fx-background-color: #2e9afe;" text="[ ... ]" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="sellButton" alignment="TOP_CENTER" layoutX="73.0" layoutY="39.0" mnemonicParsing="false" onAction="#SellButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Bán Hàng ]" textFill="WHITE">
+            <Button fx:id="sellButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#SellButtonOnAction" prefHeight="80.0" prefWidth="180.0" style="-fx-background-color: #2e9afe;" text="[ Bán Hàng ]" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <FontAwesomeIcon fill="WHITE" iconName="HOME" layoutX="116.0" layoutY="102.0" mouseTransparent="true" size="3em" />
-            <FontAwesomeIcon fill="WHITE" iconName="LIST" layoutX="285.0" layoutY="102.0" mouseTransparent="true" size="2.5em" />
-            <FontAwesomeIcon fill="WHITE" iconName="USERS" layoutX="452.0" layoutY="100.0" mouseTransparent="true" size="2.5em" />
-            <FontAwesomeIcon fill="WHITE" iconName="TH" layoutX="118.0" layoutY="226.0" mouseTransparent="true" size="2.5em" />
-            <FontAwesomeIcon fill="WHITE" iconName="PASTE" layoutX="285.0" layoutY="225.0" mouseTransparent="true" size="2.5em" />
          </children>
       </Pane>
    </bottom>
