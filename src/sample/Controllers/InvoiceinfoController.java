@@ -36,10 +36,12 @@ public class InvoiceinfoController implements Initializable {
     public Label namememLabel;
     public Label paidamountLabel;
 
+    int j = 0;
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
         showInvoiceDetails();
+        totalLabel.setText(String.valueOf(j));
     }
 
     public void showInvoiceDetails() {
@@ -64,6 +66,7 @@ public class InvoiceinfoController implements Initializable {
                 invoiceDetails = new InvoiceDetails(i, getNamebyIdproduct(resultSet.getInt("id_product")), resultSet.getInt("price"), resultSet.getInt("quantity"), resultSet.getInt("totalprice"));
                 i++;
                 list.add(invoiceDetails);
+                j+= resultSet.getInt("totalprice");
             }
         } catch (SQLException e) {
             e.printStackTrace();

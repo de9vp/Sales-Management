@@ -35,16 +35,16 @@
          </children></Pane>
    </top>
    <bottom>
-      <Pane prefHeight="547.0" prefWidth="900.0" style="-fx-border-color: #2e9afe; -fx-border-width: 2px 2px 2px 2px;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="547.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="invoiceTableView" layoutX="12.0" layoutY="12.0" prefHeight="483.0" prefWidth="876.0">
+            <TableView fx:id="invoiceTableView" layoutX="12.0" layoutY="11.0" prefHeight="483.0" prefWidth="876.0">
               <columns>
-                <TableColumn fx:id="idColumn" prefWidth="175.9999942779541" resizable="false" text="Mã Hóa Đơn" />
-                <TableColumn fx:id="codememberColumn" prefWidth="110.40005493164062" resizable="false" text="Mã Thành Viên" />
-                  <TableColumn fx:id="namememberColumn" prefWidth="141.60003662109375" resizable="false" text="Tên Khách Hàng" />
-                  <TableColumn fx:id="datecreateColumn" prefWidth="235.20004272460938" resizable="false" text="Ngày Tạo ( 2021-12-31 12:60:60.000 )" />
-                  <TableColumn fx:id="discountColumn" prefWidth="60.0" resizable="false" text="Giảm Giá" />
-                  <TableColumn fx:id="totalColumn" prefWidth="161.5999755859375" resizable="false" text="Tổng Cộng" />
+                <TableColumn fx:id="idColumn" editable="false" prefWidth="175.9999942779541" resizable="false" sortable="false" text="Mã Hóa Đơn" />
+                <TableColumn fx:id="codememberColumn" editable="false" prefWidth="110.40005493164062" resizable="false" sortable="false" text="Mã Thành Viên" />
+                  <TableColumn fx:id="namememberColumn" editable="false" prefWidth="141.60003662109375" resizable="false" sortable="false" text="Tên Khách Hàng" />
+                  <TableColumn fx:id="datecreateColumn" editable="false" prefWidth="235.20004272460938" resizable="false" sortable="false" text="Ngày Tạo ( 2021-12-31 12:60:60.000 )" />
+                  <TableColumn fx:id="discountColumn" editable="false" prefWidth="60.0" resizable="false" sortable="false" text="Giảm Giá" />
+                  <TableColumn fx:id="totalColumn" editable="false" prefWidth="161.5999755859375" resizable="false" sortable="false" text="Tổng Cộng" />
               </columns>
             </TableView>
             <Button fx:id="viewButton" disable="true" layoutX="390.0" layoutY="505.0" mnemonicParsing="false" onAction="#ViewOnAction" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #000000;" text="Xem Hóa Đơn" textFill="WHITE">
