@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="470.0" prefWidth="777.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.PurchasedController">
+   <top>
+      <Pane prefHeight="50.0" prefWidth="600.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="searchTextField" layoutX="587.0" layoutY="11.0" prefHeight="28.0" prefWidth="181.0" promptText="Tìm Kiếm" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="747.0" layoutY="30.0" mouseTransparent="true" size="1.2em" />
+            <Label layoutX="52.0" layoutY="11.0" prefHeight="28.0" prefWidth="523.0" style="-fx-background-color: #ffffff;" text="SẢN PHẨM ĐÃ MUAAAAAAAAAAAAA">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <Button fx:id="exitButton" layoutX="11.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExitOnAction" prefHeight="28.0" prefWidth="28.0" />
+            <FontAwesomeIcon iconName="REPLY" layoutX="19.0" layoutY="29.0" mouseTransparent="true" />
+         </children></Pane>
+   </top>
+   <center>
+      <Pane prefHeight="446.0" prefWidth="778.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="invoiceDetailTableView" layoutX="10.0" layoutY="9.0" prefHeight="401.0" prefWidth="758.0">
+              <columns>
+                <TableColumn fx:id="idColumn" prefWidth="41.599974632263184" resizable="false" text="ID" />
+                <TableColumn fx:id="idinvoiceColumn" prefWidth="172.7999610900879" resizable="false" text="Mã Hóa Đơn" />
+                  <TableColumn fx:id="idproductColumn" prefWidth="45.60002136230469" resizable="false" text="Mã SP" />
+                  <TableColumn fx:id="nameColumn" prefWidth="170.39996337890625" resizable="false" text="Tên Sản Phẩm" />
+                  <TableColumn fx:id="priceColumn" prefWidth="135.99993896484375" resizable="false" text="Giá Tiền" />
+                  <TableColumn fx:id="quantityColumn" prefWidth="61.60003662109375" resizable="false" text="Số Lượng" />
+                  <TableColumn fx:id="totalColumn" prefWidth="130.60003662109375" resizable="false" text="Tổng Cộng" />
+              </columns>
+            </TableView>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

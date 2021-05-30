@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="frmLogin" prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controllers.LoginController">
+   <left>
+      <Pane prefHeight="350.0" prefWidth="200.0" style="-fx-background-color: #000000; -fx-border-color: #ffffff; -fx-border-width: 10px 0px 10px 10px;" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="salesLabel" layoutX="32.0" layoutY="182.0" text="SALES MANAGEMENT" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Label>
+            <FontAwesomeIcon fx:id="coffeeIcon" fill="WHITE" iconName="COFFEE" layoutX="80.0" layoutY="174.0" size="50" text="" wrappingWidth="55.85714340209961" />
+         </children>
+      </Pane>
+   </left>
+   <right>
+      <Pane prefHeight="350.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="usernameTextField" layoutX="69.0" layoutY="136.0" prefHeight="25.0" prefWidth="160.0" promptText="Username" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" text="phuc">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </TextField>
+            <PasswordField fx:id="enterPasswordField" layoutX="69.0" layoutY="183.0" prefHeight="25.0" prefWidth="160.0" promptText="Password" style="-fx-background-color: transparent; -fx-border-color: #000000; -fx-border-width: 0px 0px 2px 0px;" text="phuc">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets left="30.0" />
+               </padding>
+            </PasswordField>
+            <FontAwesomeIcon fx:id="userIcon" glyphStyleClass="" iconName="USER" layoutX="70.0" layoutY="152.0" size="25" />
+            <FontAwesomeIcon fx:id="passIcon" iconName="KEY" layoutX="72.0" layoutY="198.0" size="21" />
+            <Button fx:id="loginButton" layoutX="98.0" layoutY="246.0" mnemonicParsing="false" onAction="#loginButtonOnAction" prefHeight="36.0" prefWidth="104.0" style="-fx-background-color: #000000;" text="Đăng Nhập" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
+            <FontAwesomeIcon fx:id="lockIcon" iconName="LOCK" layoutX="134.0" layoutY="96.0" size="50" />
+            <Button fx:id="closeButton" layoutX="265.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeButtonOnAction" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #000000;">
+               <graphic>
+                  <FontAwesomeIcon fx:id="closeIcon" fill="WHITE" iconName="CLOSE" size="12" />
+               </graphic>
+            </Button>
+            <Button fx:id="minimizeButton" layoutX="237.0" layoutY="9.0" mnemonicParsing="false" onAction="#minimizeButtonOnAction" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: #000000;">
+               <graphic>
+                  <FontAwesomeIcon fx:id="minimizeIcon" fill="WHITE" iconName="MINUS" size="12" />
+               </graphic>
+            </Button>
+            <Label fx:id="signinLabel" alignment="CENTER" layoutX="114.0" layoutY="88.0" prefHeight="26.0" prefWidth="73.0" style="-fx-background-color: #000000;" text="SIGN IN" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </right>
+</BorderPane>
