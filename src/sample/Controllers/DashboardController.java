@@ -1,5 +1,6 @@
 package sample.Controllers;
 
+import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -24,6 +25,8 @@ public class DashboardController implements Initializable {
     public Button logountButton;
     public Button closeButton;
     public Button minimizeButton;
+    public FontAwesomeIcon closeIcon;
+    public FontAwesomeIcon minimizeIcon;
 
     Connection con = null;
 

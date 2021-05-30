@@ -52,7 +52,7 @@
             <TableView fx:id="productTableView" layoutX="10.0" layoutY="36.0" prefHeight="494.0" prefWidth="300.0">
               <columns>
                 <TableColumn fx:id="productColumn" minWidth="0.0" prefWidth="171.9999942779541" resizable="false" text="Sản Phẩm" />
-                  <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="19.199981689453125" text="Namecategory" visible="false" />
+                  <TableColumn fx:id="categoryColumn" minWidth="0.0" prefWidth="19.199981689453125" text="Tên Thể Loại" visible="false" />
                   <TableColumn fx:id="priceColumn" minWidth="0.0" prefWidth="127.20001220703125" resizable="false" text="Giá Tiền" />
               </columns>
             </TableView>

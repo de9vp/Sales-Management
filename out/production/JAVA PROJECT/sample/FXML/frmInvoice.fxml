@@ -47,7 +47,7 @@
                   <TableColumn fx:id="totalColumn" prefWidth="161.5999755859375" resizable="false" text="Tổng Cộng" />
               </columns>
             </TableView>
-            <Button fx:id="viewButton" layoutX="390.0" layoutY="505.0" mnemonicParsing="false" onAction="#ViewOnAction" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #000000;" text="Xem Hóa Đơn" textFill="WHITE">
+            <Button fx:id="viewButton" disable="true" layoutX="390.0" layoutY="505.0" mnemonicParsing="false" onAction="#ViewOnAction" prefHeight="30.0" prefWidth="119.0" style="-fx-background-color: #000000;" text="Xem Hóa Đơn" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

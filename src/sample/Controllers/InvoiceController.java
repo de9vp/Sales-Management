@@ -5,21 +5,25 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
 import javafx.stage.Stage;
 import sample.Database.DBConnection;
 import sample.entity.Invoice;
-import sample.entity.InvoiceDetails;
-import sample.entity.Member;
 
+
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.List;
+
 import java.util.ResourceBundle;
 
 public class InvoiceController implements Initializable {
@@ -33,21 +37,71 @@ public class InvoiceController implements Initializable {
 
     public Button viewButton;
     public TextField searchTextField;
-    public ComboBox dayComboBox;
-    public ComboBox monthComboBox;
-    public ComboBox yearComboBox;
+    public ComboBox<Integer> dayComboBox;
+    public ComboBox<Integer> monthComboBox;
+    public ComboBox<Integer> yearComboBox;
     public Button searchButton;
     public Button exitButton;
+
     Connection con;
+    String s1 = null;
+    String s2 = null;
+    String s3 = null;
+    String s4 = null;
+    String s5 = null;
+    String s6 = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
         showInvoiceBySearch();
         getDataForComboBoxDate();
+
+        addListen();
     }
 
-    public void ViewOnAction(ActionEvent actionEvent) {
+    public void ViewOnAction(ActionEvent actionEvent)  {
+        open();
+    }
+
+    public void addListen() {
+        invoiceTableView.getSelectionModel().selectedItemProperty().addListener((observableValue, invoice, t1) -> {
+            if (t1 != null) {
+                viewButton.setDisable(false);
+                s1 = t1.getId();
+                s2 = t1.getDatecreated();
+                s3 = t1.getCode_member();
+                s4 = t1.getName_member();
+                s5 = String.valueOf(t1.getDiscount());
+                s6 = String.valueOf(t1.getTotal());
+            } else {
+                viewButton.setDisable(true);
+            }
+        });
+    }
+
+    public void open() {
+        try {
+            Stage window = (Stage) viewButton.getScene().getWindow();
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("../FXML/InvoiceInfo.fxml"));
+            Parent parent = loader.load();
+            Scene scene = new Scene(parent);
+
+            //tham chieu data thong tin hoa don sang controller khac
+            InvoiceinfoController invoiceinfoController = loader.getController();
+            invoiceinfoController.idinvoiceLabel.setText(s1);
+            invoiceinfoController.daycreLabel.setText(s2);
+            invoiceinfoController.codememLabel.setText(s3);
+            invoiceinfoController.namememLabel.setText(s4);
+            invoiceinfoController.discountLabel.setText(s5);
+            invoiceinfoController.paidamountLabel.setText(s6);
+            window.setTitle("DEMO 10");
+            window.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+            e.getCause();
+        }
     }
 
     public void SearchOnAction(ActionEvent actionEvent) { //tim kiem theo ngay thang nam

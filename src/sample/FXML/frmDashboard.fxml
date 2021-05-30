@@ -22,7 +22,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label fx:id="userLabel" layoutX="12.0" layoutY="13.0" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: #ffffff;" text="EMPLOYEE">
+            <Label fx:id="userLabel" layoutX="12.0" layoutY="13.0" prefHeight="25.0" prefWidth="98.0" style="-fx-background-color: #ffffff;">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -46,17 +46,17 @@
    <bottom>
       <Pane prefHeight="289.0" prefWidth="600.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="productButton" alignment="TOP_CENTER" layoutX="240.0" layoutY="39.0" mnemonicParsing="false" onAction="#ProductButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Sản Phẩm ]" textFill="WHITE">
+            <Button fx:id="productButton" alignment="TOP_CENTER" layoutX="240.0" layoutY="39.0" mnemonicParsing="false" onAction="#ProductButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6,5; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="[ Sản Phẩm ]">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="accountButton" alignment="TOP_CENTER" layoutX="408.0" layoutY="39.0" mnemonicParsing="false" onAction="#AccountButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Tài Khoản ]" textFill="WHITE">
+            <Button fx:id="accountButton" alignment="TOP_CENTER" layoutX="408.0" layoutY="39.0" mnemonicParsing="false" onAction="#AccountButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6,5; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="[ Tài Khoản ]">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="invoiceButton" alignment="TOP_CENTER" layoutX="73.0" layoutY="164.0" mnemonicParsing="false" onAction="#InvoiceButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Hóa Đơn ]" textFill="WHITE">
+            <Button fx:id="invoiceButton" alignment="TOP_CENTER" layoutX="73.0" layoutY="164.0" mnemonicParsing="false" onAction="#InvoiceButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6,5; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="[ Hóa Đơn ]">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -71,15 +71,15 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="sellButton" alignment="TOP_CENTER" layoutX="73.0" layoutY="39.0" mnemonicParsing="false" onAction="#SellButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #000000;" text="[ Bán Hàng ]" textFill="WHITE">
+            <Button fx:id="sellButton" alignment="TOP_CENTER" layoutX="73.0" layoutY="39.0" mnemonicParsing="false" onAction="#SellButtonOnAction" prefHeight="80.0" prefWidth="120.0" style="-fx-background-color: #ffffff; -fx-background-radius: 6,5; -fx-background-insets: 0,1; -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );" text="[ Bán Hàng ]">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <FontAwesomeIcon fill="WHITE" iconName="HOME" layoutX="116.0" layoutY="102.0" mouseTransparent="true" size="3em" />
-            <FontAwesomeIcon fill="WHITE" iconName="LIST" layoutX="285.0" layoutY="102.0" mouseTransparent="true" size="2.5em" />
-            <FontAwesomeIcon fill="WHITE" iconName="USERS" layoutX="452.0" layoutY="100.0" mouseTransparent="true" size="2.5em" />
-            <FontAwesomeIcon fill="WHITE" iconName="TH" layoutX="118.0" layoutY="226.0" mouseTransparent="true" size="2.5em" />
+            <FontAwesomeIcon iconName="HOME" layoutX="116.0" layoutY="102.0" mouseTransparent="true" size="3em" />
+            <FontAwesomeIcon iconName="LIST" layoutX="285.0" layoutY="102.0" mouseTransparent="true" size="2.5em" />
+            <FontAwesomeIcon iconName="USERS" layoutX="452.0" layoutY="100.0" mouseTransparent="true" size="2.5em" />
+            <FontAwesomeIcon iconName="TH" layoutX="118.0" layoutY="226.0" mouseTransparent="true" size="2.5em" />
             <FontAwesomeIcon fill="WHITE" iconName="PASTE" layoutX="285.0" layoutY="225.0" mouseTransparent="true" size="2.5em" />
          </children>
       </Pane>

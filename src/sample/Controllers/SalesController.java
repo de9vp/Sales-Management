@@ -137,49 +137,44 @@ public class SalesController implements Initializable {
     }
 
     public void PaymentOnAction(ActionEvent actionEvent) throws SQLException {
-        if (itemlist.isEmpty()) { // kiem tra neu hoa don co san pham moi cho thanh toan (xe item trong listitem)
-            //showAlert(Alert.AlertType.ERROR, owner, "Cảnh báo!", "Hóa đơn đang trống. Mời thêm món!");
-            System.out.println("Hóa đơn đang trống. Mời thêm món!!");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+
+        String idinvoice = String.valueOf(timestamp.getTime()); //dat id hoa don theo thoi gian ()
+        String Date = timestamp.toString();
+
+        String codeM; // neu bo trong o nhap ma thanh vien thì se luu gia tri String null
+        if (codeTextField.getText().isEmpty()) {
+            codeM = "null";
         } else {
-            Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+            codeM = codeTextField.getText();
+        }
 
-            String idinvoice = String.valueOf(timestamp.getTime()); //dat id hoa don theo thoi gian ()
-            String Date = timestamp.toString();
-
-            String codeM; // neu bo trong o nhap ma thanh vien thì se luu gia tri String null
-            if (codeTextField.getText().isEmpty()) {
-                codeM = "null";
-            } else {
-                codeM = codeTextField.getText();
-            }
-
-            int discount = Integer.parseInt(discountTextField.getText());
-            int total = Integer.parseInt(paidAmountTextField.getText());
+        int discount = Integer.parseInt(discountTextField.getText());
+        int total = Integer.parseInt(paidAmountTextField.getText());
 
 //        System.out.println("" + idinvoice +"");
 //        System.out.println("" + date +"");
 
-            //Tao hoa don add vao tblInvoice
-            executeQuery(" INSERT INTO tblInvoice (id, code_member, datecreated, discount, total) " +
-                    "VALUES ( '"+ idinvoice +"' , '"+ codeM +"' , '"+ Date +"' , '"+ discount +"' , '"+ total +"' ) ");
+        //Tao hoa don add vao tblInvoice
+        executeQuery(" INSERT INTO tblInvoice (id, code_member, datecreated, discount, total) " +
+                "VALUES ( '"+ idinvoice +"' , '"+ codeM +"' , '"+ Date +"' , '"+ discount +"' , '"+ total +"' ) ");
 
-            //xet tung hang trong (item) trong table view add vao tblInvoiceDetail
-            for (Item i : itemlist) {
-                int id = getIdByNameproduct(i.getNameProduct());
-                executeQuery("INSERT INTO tblInvoiceDetail" +
-                        " ( id_invoice, id_product, quantity, price, totalprice ) " +
-                        "VALUES ( '"+ idinvoice +"', '"+ id +"', '"+ i.getQuantity() +"', '"+ i.getPrice() +"', '"+ i.getTotal() +"' ) ");
-            }
-            orderTableView.getItems().clear();
-            handlePayment();
-            handleButtonPayandCancel();
-            codeTextField.setDisable(false);
-            codeTextField.setText("");
-            discountTextField.setText("0");
-
-            //showAlert(Alert.AlertType.CONFIRMATION, owner, "Thông báo!", "Thanh toán thành công!");
-            System.out.println("Thanh toán thành công!");
+        //xet tung hang trong (item) trong table view add vao tblInvoiceDetail
+        for (Item i : itemlist) {
+            int id = getIdByNameproduct(i.getNameProduct());
+            executeQuery("INSERT INTO tblInvoiceDetail" +
+                    " ( id_invoice, id_product, quantity, price, totalprice ) " +
+                    "VALUES ( '"+ idinvoice +"', '"+ id +"', '"+ i.getQuantity() +"', '"+ i.getPrice() +"', '"+ i.getTotal() +"' ) ");
         }
+        orderTableView.getItems().clear();
+        handlePayment();
+        handleButtonPayandCancel();
+        codeTextField.setDisable(false);
+        codeTextField.setText("");
+        discountTextField.setText("0");
+
+        //showAlert(Alert.AlertType.CONFIRMATION, owner, "Thông báo!", "Thanh toán thành công!");
+        System.out.println("Thanh toán thành công!");
     }
 
     public void CancelInvoiceOnAction(ActionEvent actionEvent) {

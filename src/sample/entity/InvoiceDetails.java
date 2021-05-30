@@ -1,6 +1,7 @@
 package sample.entity;
 
 public class InvoiceDetails {
+    private int number;
     private int id;
     private String idInvoice;
     private int idProduct;
@@ -25,6 +26,22 @@ public class InvoiceDetails {
         this.price = price;
         this.quantity = quantity;
         this.totalprice = totalprice;
+    }
+
+    public InvoiceDetails(int number, String nameProduct, int price, int quantity, int totalprice) {
+        this.number = number;
+        this.nameProduct = nameProduct;
+        this.price = price;
+        this.quantity = quantity;
+        this.totalprice = totalprice;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public int getId() {

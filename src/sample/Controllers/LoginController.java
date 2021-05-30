@@ -114,6 +114,7 @@ public class LoginController implements Initializable {
             DashboardController dashboardController = loader.getController();
             System.out.println("" + grantLogged + "");
             dashboardController.userLabel.setText(grantLogged);
+
             window.setTitle("DEMO 2");
             window.setScene(scene);
         } catch (Exception e) {
