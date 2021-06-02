@@ -14,19 +14,19 @@
    <top>
       <Pane prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="50.0" layoutY="10.0" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #ffffff;" text="KHÁCH HÀNG">
+            <Label alignment="CENTER" layoutX="11.0" layoutY="10.0" prefHeight="30.0" prefWidth="138.0" style="-fx-background-color: #ffffff;" text="KHÁCH HÀNG">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Button fx:id="deleteButton" disable="true" layoutX="416.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000;" text="Xóa">
+            <Button fx:id="deleteButton" disable="true" layoutX="377.0" layoutY="10.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="30.0" prefWidth="80.0" style="-fx-background-color: #ff0000;" text="Xóa">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <TextField fx:id="searchTextField" layoutX="252.0" layoutY="10.0" prefHeight="30.0" prefWidth="153.0" promptText="Tìm kiếm" />
-            <FontAwesomeIcon iconName="SEARCH" layoutX="383.0" layoutY="31.0" mouseTransparent="true" size="1.2em" />
-            <Button fx:id="exitButton" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExitOnAction" prefHeight="30.0" prefWidth="30.0" />
-            <FontAwesomeIcon iconName="REPLY" layoutX="19.0" layoutY="30.0" mouseTransparent="true" />
+            <TextField fx:id="searchTextField" layoutX="213.0" layoutY="10.0" prefHeight="30.0" prefWidth="153.0" promptText="Tìm kiếm" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="344.0" layoutY="31.0" mouseTransparent="true" size="1.2em" />
+            <Button fx:id="exitButton" layoutX="467.0" layoutY="10.0" mnemonicParsing="false" onAction="#ExitOnAction" prefHeight="30.0" prefWidth="30.0" />
+            <FontAwesomeIcon iconName="REPLY" layoutX="476.0" layoutY="30.0" mouseTransparent="true" />
          </children>
       </Pane>
    </top>

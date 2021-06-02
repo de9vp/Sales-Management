@@ -78,7 +78,8 @@ public class ProductController implements Initializable {
                 executeQuery("INSERT INTO tblProduct (name_product, price, id_category) VALUES ('"+ name +"','"+ Integer.valueOf(price) +"','"+ id +"')");
                 productTextField.setText("");
                 priceTextField.setText("");
-                categoryComboBox.valueProperty().set(null);
+                //categoryComboBox.valueProperty().set(null);
+                categoryComboBox.setPromptText("Chọn Thể Loại");
                 showProduct();
             }
         } catch (Exception e) {

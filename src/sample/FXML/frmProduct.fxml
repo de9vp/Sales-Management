@@ -44,28 +44,26 @@
    <top>
       <Pane prefHeight="50.0" prefWidth="720.0" style="-fx-background-color: #000000;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="deleteButton" disable="true" layoutX="460.0" layoutY="11.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #ff0000;" text="Xóa Món">
+            <Button fx:id="deleteButton" disable="true" layoutX="413.0" layoutY="11.0" mnemonicParsing="false" onAction="#DeleteOnAction" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #ff0000;" text="Xóa Món">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Label layoutX="77.0" layoutY="11.0" prefHeight="41.0" prefWidth="106.0" style="-fx-background-color: #ffffff;" text="SẢN PHẨM">
+            <Label alignment="CENTER" layoutX="12.0" layoutY="11.0" prefHeight="41.0" prefWidth="123.0" style="-fx-background-color: #ffffff;" text="SẢN PHẨM">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
-               <padding>
-                  <Insets left="10.0" />
-               </padding>
             </Label>
-            <TextField fx:id="searchTextField" layoutX="194.0" layoutY="11.0" prefHeight="29.0" prefWidth="153.0" promptText="Tìm kiếm" />
+            <TextField fx:id="searchTextField" layoutX="147.0" layoutY="11.0" prefHeight="29.0" prefWidth="153.0" promptText="Tìm kiếm" />
             <FontAwesomeIcon iconName="SEARCH" layoutX="324.0" layoutY="30.0" mouseTransparent="true" size="1.2em" />
-            <Button fx:id="updateButton" alignment="CENTER" disable="true" layoutX="359.0" layoutY="11.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #fffb00;" text="Cập Nhật">
+            <Button fx:id="updateButton" alignment="CENTER" disable="true" layoutX="312.0" layoutY="11.0" mnemonicParsing="false" onAction="#UpdateOnAction" prefHeight="28.0" prefWidth="90.0" style="-fx-background-color: #fffb00;" text="Cập Nhật">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="dashboardButton" layoutX="11.0" layoutY="12.0" mnemonicParsing="false" onAction="#DashboardOnAction" prefHeight="28.0" prefWidth="56.0" />
-            <FontAwesomeIcon iconName="REPLY_ALL" layoutX="33.0" layoutY="30.0" mouseTransparent="true" />
+            <Button fx:id="dashboardButton" layoutX="515.0" layoutY="11.0" mnemonicParsing="false" onAction="#DashboardOnAction" prefHeight="28.0" prefWidth="33.0" />
+            <FontAwesomeIcon iconName="REPLY_ALL" layoutX="525.0" layoutY="32.0" mouseTransparent="true" size="1.2em" />
+            <FontAwesomeIcon iconName="SEARCH" layoutX="280.0" layoutY="30.0" size="1.2em" />
          </children>
       </Pane>
    </top>

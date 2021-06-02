@@ -40,6 +40,7 @@ public class LoginController implements Initializable {
 
     Connection con = null;
     String grantLogged = null;
+    String usernameLogged = null;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -88,6 +89,7 @@ public class LoginController implements Initializable {
                 enterPasswordField.setText("");
             } else {
                 grantLogged = rs.getString("grantname");
+                usernameLogged = user;
                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Đăng nhập thành công!");
                 alert.setTitle("Thông báo!");
                 Optional<ButtonType> optButton = alert.showAndWait();
@@ -112,8 +114,8 @@ public class LoginController implements Initializable {
 
             //hien thi quyen dang nhap
             DashboardController dashboardController = loader.getController();
-            System.out.println("" + grantLogged + "");
             dashboardController.userLabel.setText(grantLogged);
+            dashboardController.usernameLabel.setText(usernameLogged);
 
             window.setTitle("DEMO 2");
             window.setScene(scene);

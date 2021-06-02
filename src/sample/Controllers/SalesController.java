@@ -142,7 +142,7 @@ public class SalesController implements Initializable {
         String idinvoice = String.valueOf(timestamp.getTime()); //dat id hoa don theo thoi gian ()
         String Date = timestamp.toString();
 
-        String codeM; // neu bo trong o nhap ma thanh vien thì se luu gia tri String null
+        String codeM; // neu bo trong o nhap ma thanh vien thì se luu gia tri String 'null'
         if (codeTextField.getText().isEmpty()) {
             codeM = "null";
         } else {

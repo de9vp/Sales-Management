@@ -134,11 +134,6 @@ public class AccountController implements Initializable {
             if (!username.isEmpty() && !password.isEmpty() && !grant.isEmpty()) {
                 executeQuery("INSERT INTO tblAccount (username, password, grantname) VALUES ('"+ username +"','"+ password +"','"+ grant +"')");
                 showAccount();
-//                PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO tblAccount (username, password, grant) VALUES (?,?,?)");
-//                preparedStatement.setString(1, username);
-//                preparedStatement.setString(2, password);
-//                preparedStatement.setString(3, grant);
-//                int resultSet = preparedStatement.executeUpdate();
                 usernameTextField.setText("");
                 passwordTextField.setText("");
                 grantComboBox.valueProperty().set(null);

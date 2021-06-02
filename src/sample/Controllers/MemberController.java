@@ -1,5 +1,6 @@
 package sample.Controllers;
 
+import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -18,10 +19,7 @@ import sample.entity.Member;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 public class MemberController implements Initializable {
@@ -48,8 +46,8 @@ public class MemberController implements Initializable {
         showMemberSearched();
     }
 
-    public void SaveOnAction(ActionEvent actionEvent) throws Exception {
-        insertRecord();
+    public void SaveOnAction(ActionEvent actionEvent) {
+            insertRecord();
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
@@ -134,18 +132,14 @@ public class MemberController implements Initializable {
     }
 
     public void insertRecord() {
-        try {
-            String codemember = codeTextField.getText();
-            String membername = memberTextField.getText();
-            if (!codemember.isEmpty() && !membername.isEmpty()) {
-                String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + codemember + "', '" + membername + "')";
-                executeQuery(query);
-                showMemberSearched();
-                codeTextField.setText("");
-                memberTextField.setText("");
-            }
-        } catch (Exception e) {
-            System.out.println("Tên đã có. Mời nhập tên khác!");
+        String codemember = codeTextField.getText();
+        String membername = memberTextField.getText();
+        if (!codemember.isEmpty() && !membername.isEmpty()) {
+            String query = "INSERT INTO tblMember (code_member, name_member) VALUES ('" + codemember + "', '" + membername + "')";
+            executeQuery(query);
+            showMemberSearched();
+            codeTextField.setText("");
+            memberTextField.setText("");
         }
     }
 
@@ -156,7 +150,7 @@ public class MemberController implements Initializable {
             st = con.createStatement();
             st.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Đã tồn tại. Vui lòng nhập lại tên!");
         }
     }
 

@@ -2,15 +2,18 @@ package sample.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 import sample.Database.DBConnection;
 import sample.entity.InvoiceDetails;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,6 +23,7 @@ import java.util.ResourceBundle;
 
 public class InvoiceinfoController implements Initializable {
 
+    public Button exitButton;
     Connection con;
     public TableView invoiceTableView;
     public TableColumn numberColumn;
@@ -86,4 +90,20 @@ public class InvoiceinfoController implements Initializable {
     }
 
 
+    public void ExitOnAction(ActionEvent actionEvent) {
+        try {
+            openInvoice();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openInvoice() throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("../FXML/frmInvoice.fxml"));
+        Scene fxmlFile = new Scene(root);
+        Stage window = (Stage) exitButton.getScene().getWindow();
+        window.setScene(fxmlFile);
+        window.setTitle("DEMO 6");
+        window.show();
+    }
 }

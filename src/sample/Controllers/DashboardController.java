@@ -27,6 +27,9 @@ public class DashboardController implements Initializable {
     public Button minimizeButton;
     public FontAwesomeIcon closeIcon;
     public FontAwesomeIcon minimizeIcon;
+    public Button reportButton;
+    public Button changepassButton;
+    public Label usernameLabel;
 
     Connection con = null;
 
@@ -125,5 +128,11 @@ public class DashboardController implements Initializable {
         window.setIconified(false);
         window.setTitle(tittle);
         window.showAndWait();
+    }
+
+    public void reportButtonOnAction(ActionEvent actionEvent) {
+    }
+
+    public void ChangePassButtonOnAction(ActionEvent actionEvent) {
     }
 }

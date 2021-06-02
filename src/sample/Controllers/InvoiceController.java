@@ -37,10 +37,6 @@ public class InvoiceController implements Initializable {
 
     public Button viewButton;
     public TextField searchTextField;
-    public ComboBox<Integer> dayComboBox;
-    public ComboBox<Integer> monthComboBox;
-    public ComboBox<Integer> yearComboBox;
-    public Button searchButton;
     public Button exitButton;
 
     Connection con;
@@ -55,8 +51,6 @@ public class InvoiceController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         con = DBConnection.DBConn();
         showInvoiceBySearch();
-        getDataForComboBoxDate();
-
         addListen();
     }
 
@@ -84,7 +78,7 @@ public class InvoiceController implements Initializable {
         try {
             Stage window = (Stage) viewButton.getScene().getWindow();
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(getClass().getResource("../FXML/InvoiceInfo.fxml"));
+            loader.setLocation(getClass().getResource("../FXML/frmInvoiceDetail.fxml"));
             Parent parent = loader.load();
             Scene scene = new Scene(parent);
 
@@ -104,10 +98,6 @@ public class InvoiceController implements Initializable {
         }
     }
 
-    public void SearchOnAction(ActionEvent actionEvent) { //tim kiem theo ngay thang nam
-
-    }
-
     public void showInvoiceBySearch() {
         ObservableList<Invoice> list = getInvoice();
 
@@ -125,9 +115,7 @@ public class InvoiceController implements Initializable {
                     return true;
                 }
                 String lowerCaseFilter = t1.toLowerCase();
-                if (invoice.getName_member().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true;
-                } else if (invoice.getCode_member().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                if (invoice.getDatecreated().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (invoice.getId().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
@@ -171,26 +159,26 @@ public class InvoiceController implements Initializable {
         return name;
     }
 
-    public void getDataForComboBoxDate() {
-        ObservableList<Integer> listDay = FXCollections.observableArrayList();
-        ObservableList<Integer> listMonth = FXCollections.observableArrayList();
-        ObservableList<Integer> listYear = FXCollections.observableArrayList();
-        for (int j = 1; j <= 31; j++) {
-            listDay.add(j);
-        }
-        for (int j = 1; j <= 12; j++) {
-            listMonth.add(j);
-        }
-        for (int j = 1970; j <= 2100; j++) {
-            listYear.add(j);
-        }
-        dayComboBox.setItems(null);
-        monthComboBox.setItems(null);
-        yearComboBox.setItems(null);
-        dayComboBox.setItems(listDay);
-        monthComboBox.setItems(listMonth);
-        yearComboBox.setItems(listYear);
-    }
+//    public void getDataForComboBoxDate() {
+//        ObservableList<Integer> listDay = FXCollections.observableArrayList();
+//        ObservableList<Integer> listMonth = FXCollections.observableArrayList();
+//        ObservableList<Integer> listYear = FXCollections.observableArrayList();
+//        for (int j = 1; j <= 31; j++) {
+//            listDay.add(j);
+//        }
+//        for (int j = 1; j <= 12; j++) {
+//            listMonth.add(j);
+//        }
+//        for (int j = 1970; j <= 2100; j++) {
+//            listYear.add(j);
+//        }
+//        dayComboBox.setItems(null);
+//        monthComboBox.setItems(null);
+//        yearComboBox.setItems(null);
+//        dayComboBox.setItems(listDay);
+//        monthComboBox.setItems(listMonth);
+//        yearComboBox.setItems(listYear);
+//    }
 
     public void ExitOnAction(ActionEvent actionEvent) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
