@@ -72,7 +72,7 @@ public class ProductController implements Initializable {
             String namecategory = categoryComboBox.getSelectionModel().getSelectedItem();
 
             if (name.isEmpty() || price.isEmpty() || namecategory.isEmpty()) {
-                //canh bao
+                System.out.println("Vui lòng không bỏ trống!");
             } else {
                 int id = getIdByNamecategory(namecategory);
                 executeQuery("INSERT INTO tblProduct (name_product, price, id_category) VALUES ('"+ name +"','"+ Integer.valueOf(price) +"','"+ id +"')");
@@ -83,7 +83,7 @@ public class ProductController implements Initializable {
                 showProduct();
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Đã tồn tại. Vui lòng nhập lại!");
         }
     }
 
@@ -100,8 +100,15 @@ public class ProductController implements Initializable {
         Products products = productsTableView.getSelectionModel().getSelectedItem();
         String query = " UPDATE tblProduct SET name_product = '"+ productTextField.getText() +"', price = '"+ priceTextField.getText() +"', " +
                 "id_category = '"+ getIdByNamecategory(namecategory) +"' WHERE id_product = '" + products.getId() + "' ";
-        executeQuery(query);
-        showProduct();
+
+        String name = productTextField.getText();
+        String price = priceTextField.getText();
+        if (name.isEmpty() || price.isEmpty() || namecategory.isEmpty()) {
+            System.out.println("Vui lòng không bỏ trống!");
+        } else {
+            executeQuery(query);
+            showProduct();
+        }
     }
 
     public void DeleteOnAction(ActionEvent actionEvent) {
@@ -235,7 +242,7 @@ public class ProductController implements Initializable {
             st = con.createStatement();
             st.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Đã tồn tại. Vui lòng nhập lại!");
         }
     }
 

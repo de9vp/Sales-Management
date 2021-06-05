@@ -1,6 +1,5 @@
 package sample.Controllers;
 
-import com.microsoft.sqlserver.jdbc.SQLServerException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -10,16 +9,21 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import sample.Database.DBConnection;
 import sample.entity.Member;
 
 import java.io.IOException;
 import java.net.URL;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ResourceBundle;
 
 public class MemberController implements Initializable {
@@ -150,7 +154,7 @@ public class MemberController implements Initializable {
             st = con.createStatement();
             st.executeUpdate(query);
         } catch (SQLException e) {
-            System.out.println("Đã tồn tại. Vui lòng nhập lại tên!");
+            System.out.println("Đã tồn tại. Vui lòng nhập lại!");
         }
     }
 

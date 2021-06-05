@@ -113,7 +113,7 @@ public class CategoryController implements Initializable {
             st = con.createStatement();
             st.executeUpdate(query);
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Đã tồn tại. Vui lòng nhập lại!");
         }
     }
 
