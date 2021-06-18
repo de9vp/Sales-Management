@@ -82,7 +82,6 @@ public class SalesController implements Initializable {
     }
 
     public void PurchasedButtonOnAction(ActionEvent actionEvent) {
-        System.out.println("0202");
         try {
             openPurchase();
         } catch (IOException e) {
@@ -140,7 +139,7 @@ public class SalesController implements Initializable {
         Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 
         String idinvoice = String.valueOf(timestamp.getTime()); //dat id hoa don theo thoi gian ()
-        String Date = timestamp.toString();
+        String Date = timestamp.toString(); // hien thi thoi gian theo dang 2021-12-31 19:30:46.123
 
         String codeM; // neu bo trong o nhap ma thanh vien thì se luu gia tri String 'null'
         if (codeTextField.getText().isEmpty()) {
@@ -163,8 +162,8 @@ public class SalesController implements Initializable {
         for (Item i : itemlist) {
             int id = getIdByNameproduct(i.getNameProduct());
             executeQuery("INSERT INTO tblInvoiceDetail" +
-                    " ( id_invoice, id_product, quantity, price, totalprice ) " +
-                    "VALUES ( '"+ idinvoice +"', '"+ id +"', '"+ i.getQuantity() +"', '"+ i.getPrice() +"', '"+ i.getTotal() +"' ) ");
+                    " ( id_invoice, id_product, quantity, price, totalprice, datepurchase ) " +
+                    "VALUES ( '"+ idinvoice +"', '"+ id +"', '"+ i.getQuantity() +"', '"+ i.getPrice() +"', '"+ i.getTotal() +"', '"+ Date +"') ");
         }
         orderTableView.getItems().clear();
         handlePayment();

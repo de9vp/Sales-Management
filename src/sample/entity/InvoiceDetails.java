@@ -9,8 +9,9 @@ public class InvoiceDetails {
     private int price;
     private int quantity;
     private int totalprice;
+    private String datepurchase;
 
-    public InvoiceDetails(int id, String idInvoice, int idProduct, String nameProduct, int price, int quantity, int totalprice) {
+    public InvoiceDetails(int id, String idInvoice, int idProduct, String nameProduct, int price, int quantity, int totalprice, String datepurchase) {
         this.id = id;
         this.idInvoice = idInvoice;
         this.idProduct = idProduct;
@@ -18,6 +19,7 @@ public class InvoiceDetails {
         this.price = price;
         this.quantity = quantity;
         this.totalprice = totalprice;
+        this.datepurchase = datepurchase;
     }
 
     public InvoiceDetails(String idInvoice, int idProduct, int price, int quantity, int totalprice) {
@@ -98,5 +100,13 @@ public class InvoiceDetails {
 
     public void setTotalprice(int totalprice) {
         this.totalprice = totalprice;
+    }
+
+    public String getDatepurchase() {
+        return datepurchase;
+    }
+
+    public void setDatepurchase(String datepurchase) {
+        this.datepurchase = datepurchase;
     }
 }

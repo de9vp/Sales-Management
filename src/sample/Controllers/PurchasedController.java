@@ -36,6 +36,7 @@ public class PurchasedController implements Initializable {
     public TableColumn<InvoiceDetails, Integer> quantityColumn;
     public TableColumn<InvoiceDetails, Integer> totalColumn;
     public Button exitButton;
+    public TableColumn<InvoiceDetails, String> timeColumn;
 
     Connection con;
 
@@ -66,6 +67,7 @@ public class PurchasedController implements Initializable {
         priceColumn.setCellValueFactory(new PropertyValueFactory<>("price"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         totalColumn.setCellValueFactory(new PropertyValueFactory<>("totalprice"));
+        timeColumn.setCellValueFactory(new PropertyValueFactory<>("datepurchase"));
 
         FilteredList<InvoiceDetails> filteredList = new FilteredList<>(list, b -> true);
         searchTextField.textProperty().addListener((observableValue, s, t1) -> {
@@ -77,6 +79,8 @@ public class PurchasedController implements Initializable {
                 if (invoiceDetails.getIdInvoice().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else if (invoiceDetails.getNameProduct().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (invoiceDetails.getDatepurchase().toLowerCase().indexOf(lowerCaseFilter) != -1) {
                     return true;
                 } else {
                     return false;
@@ -98,7 +102,7 @@ public class PurchasedController implements Initializable {
                 name = getNameByIdproduct(rs.getInt("id_product"));
                 invoiceDetails = new InvoiceDetails(rs.getInt("id"), rs.getString("id_invoice"),
                         rs.getInt("id_product"), name, rs.getInt("price"),
-                        rs.getInt("quantity"), rs.getInt("totalprice"));
+                        rs.getInt("quantity"), rs.getInt("totalprice"), rs.getString("datepurchase"));
                 list.add(invoiceDetails);
             }
         } catch (SQLException e) {
