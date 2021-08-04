@@ -8,8 +8,8 @@
     </content>
     <orderEntry type="jdk" jdkName="16" jdkType="JavaSDK" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="mssql-jdbc-9.2.1.jre15" level="project" />
     <orderEntry type="library" name="lib" level="project" />
     <orderEntry type="library" name="fontawesomefx-8.1" level="project" />
-    <orderEntry type="library" name="mssql-jdbc-9.2.1.jre15" level="project" />
   </component>
 </module>
